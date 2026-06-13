@@ -469,10 +469,7 @@
     { id: "final",  label: "Finals Review",  title: "All Chapters",                                   due: "Jul 25" },
   ];
 
-  // Track notes posted in this session so only those show a delete button
-  const sessionNotes = new Set();
-
-  // Init Firebase — gracefully handle missing config
+// Init Firebase — gracefully handle missing config
   let db = null;
   const configured = true;
 
@@ -573,15 +570,13 @@
             <span class="note-author">${escHtml(n.author || "Anonymous")}</span>
             <div style="display:flex;align-items:center;gap:0.5rem">
               <span class="note-date">${formatDate(n.createdAt)}</span>
-              ${sessionNotes.has(n.id) ? `<button class="delete-btn" data-id="${n.id}" data-chapter="${chapterId}">✕ delete</button>` : ""}
+              <button class="delete-btn" data-id="${n.id}" data-chapter="${chapterId}">✕ delete</button>
             </div>
           </div>
           <div class="note-text">${escHtml(n.text)}</div>
         `;
         listEl.appendChild(card);
-        if (sessionNotes.has(n.id)) {
-          card.querySelector(".delete-btn").addEventListener("click", () => deleteNote(n.id, chapterId));
-        }
+        card.querySelector(".delete-btn").addEventListener("click", () => deleteNote(n.id, chapterId));
       });
 
     } catch (err) {
@@ -616,8 +611,7 @@
         createdAt: serverTimestamp()
       });
 
-      sessionNotes.add(docRef.id);
-      textEl.value = "";
+textEl.value = "";
       nameEl.value = "";
       ok.style.display = "inline-block";
       setTimeout(() => { ok.style.display = "none"; }, 3000);
@@ -636,12 +630,12 @@
 
   // ── Delete a note ────────────────────────────────────────
   async function deleteNote(noteId, chapterId) {
-    if (!confirm("Delete this note?")) return;
+    if (!confirm("Are you sure you want to delete this note?")) return;
+    if (!confirm("This is permanent and cannot be undone. Delete anyway?")) return;
     try {
       const { deleteDoc, doc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
       await deleteDoc(doc(db, "notes", noteId));
-      sessionNotes.delete(noteId);
-      await loadNotes(chapterId);
+await loadNotes(chapterId);
     } catch (err) {
       alert("Could not delete note.");
       console.error(err);
