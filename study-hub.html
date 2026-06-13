@@ -92,6 +92,62 @@
     padding: 2rem 1.25rem;
   }
 
+  /* Visual Aids */
+  .visual-aids {
+    margin-bottom: 2rem;
+  }
+
+  .section-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .visual-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .visual-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(61,90,153,0.1);
+  }
+
+  .visual-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .visual-info strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .visual-info span {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
   /* Chapter sections */
   .chapter {
     background: var(--surface);
@@ -339,6 +395,20 @@
 </header>
 
 <main>
+
+  <!-- Visual Aids -->
+  <div class="visual-aids">
+    <div class="section-heading">Visual Aids</div>
+    <div class="visual-grid">
+      <a class="visual-card" href="neurotransmitter-body-map.html" target="_blank">
+        <div class="visual-icon">🧠</div>
+        <div class="visual-info">
+          <strong>Neurotransmitter Body Map</strong>
+          <span>Where each neurotransmitter acts in the body — Ch. 2</span>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <!-- Chapters will be rendered here by JS -->
   <div id="chapters-container"></div>
