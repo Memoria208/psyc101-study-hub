@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSYC 101 — Study Hub</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --text: #1a1a18;
+    --muted: #6b6a64;
+    --accent: #3d5a99;
+    --accent-light: #eef1f9;
+    --accent-hover: #2e4578;
+    --tag-bg: #e8ecf7;
+    --tag-text: #2e4578;
+    --success: #2d7a4f;
+    --success-bg: #eaf4ef;
+    --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1.1rem;
+  }
+
+  .flashcard-link {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  .flashcard-link:hover { background: rgba(255,255,255,0.25); }
+
+  /* Setup banner */
+  #setup-banner {
+    background: #fff8e1;
+    border-bottom: 1px solid #f0d060;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+    color: #5a4800;
+    text-align: center;
+  }
+
+  #setup-banner code {
+    background: #f0d060;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+
+  /* Layout */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+  }
+
+  /* Chapter sections */
+  .chapter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+
+  .chapter-header:hover { background: var(--accent-light); }
+
+  .chapter-header.open { border-bottom-color: var(--border); }
+
+  .chapter-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chapter-tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .chapter-title {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .chapter-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .note-count {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .chevron {
+    font-size: 0.8rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .chevron.open { transform: rotate(180deg); }
+
+  /* Chapter body */
+  .chapter-body {
+    display: none;
+    padding: 1.25rem;
+  }
+
+  .chapter-body.open { display: block; }
+
+  /* Notes list */
+  .notes-list {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .note-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.85rem 1rem;
+  }
+
+  .note-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  .note-author {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .note-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .note-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    border: 1px dashed var(--border);
+    border-radius: 7px;
+    margin-bottom: 1.25rem;
+  }
+
+  .loading-state {
+    text-align: center;
+    padding: 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  /* Add note form */
+  .add-note-form {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 0.65rem;
+  }
+
+  .form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .form-row input:focus { border-color: var(--accent); }
+
+  textarea.note-input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--text);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea.note-input:focus { border-color: var(--accent); }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .submit-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  button.post-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  button.post-btn:hover { background: var(--accent-hover); }
+  button.post-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .post-success {
+    font-size: 0.8rem;
+    color: var(--success);
+    background: var(--success-bg);
+    border-radius: 5px;
+    padding: 4px 10px;
+    display: none;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 540px) {
+    header h1 { font-size: 1.4rem; }
+    .form-row { flex-direction: column; }
+    .submit-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+
+
+<header>
+  <h1>PSYC 101 — Study Hub</h1>
+  <p>Shared notes from students, organized by chapter</p>
+  <a class="flashcard-link" href="index.html">↗ Open Flashcard App</a>
+</header>
+
+<main>
+
+  <!-- Chapters will be rendered here by JS -->
+  <div id="chapters-container"></div>
+
+</main>
+
+<footer>
+  PSYC 101 · Summer 2026 · Notes are student-submitted and unmoderated — use your own judgment.
+</footer>
+
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, query, where, orderBy, getDocs, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ─────────────────────────────────────────────────────────
+  // 🔧 STEP 1: Replace this object with your Firebase config.
+  //    Get it from: Firebase Console → Your Project →
+  //    Project Settings → Your Apps → SDK setup → Config
+  // ─────────────────────────────────────────────────────────
+  const firebaseConfig = {
+    apiKey: "AIzaSyCGlhtk6i6G2l02iC1qwCBGQ3plKGEI72U",
+    authDomain: "psyc-study-hub.firebaseapp.com",
+    projectId: "psyc-study-hub",
+    storageBucket: "psyc-study-hub.firebasestorage.app",
+    messagingSenderId: "289930203679",
+    appId: "1:289930203679:web:a3168688d97cbd15e4bb2a"
+  };
+
+  // Chapter definitions — matches your course schedule
+  const CHAPTERS = [
+    { id: "ch1",    label: "Chapter 1",     title: "Thinking Critically with Psychological Science",  due: "Due Jun 7" },
+    { id: "ch2_3",  label: "Chapters 2 & 3", title: "Neuroscience & Consciousness",                   due: "Due Jun 14" },
+    { id: "ch5_6",  label: "Chapters 5 & 6", title: "Sensation & Perception / Learning",              due: "Due Jun 21" },
+    { id: "ch7_8",  label: "Chapters 7 & 8", title: "Memory / Thinking & Language",                   due: "Due Jun 28" },
+    { id: "ch9_10", label: "Chapters 9 & 10","title": "Motivation & Emotion / Developmental Psych",  due: "Due Jul 5" },
+    { id: "ch11_12",label: "Chapters 11 & 12","title": "Personality / Social Psychology",             due: "Due Jul 12" },
+    { id: "ch13_14",label: "Chapters 13 & 14","title": "Psychological Disorders / Treatment",         due: "Due Jul 19" },
+    { id: "final",  label: "Finals Review",  title: "All Chapters",                                   due: "Jul 25" },
+  ];
+
+  // Init Firebase — gracefully handle missing config
+  let db = null;
+  const configured = true;
+
+  if (configured) {
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+  }
+
+  // ── Render chapters ──────────────────────────────────────
+  const container = document.getElementById("chapters-container");
+
+  CHAPTERS.forEach(ch => {
+    const section = document.createElement("div");
+    section.className = "chapter";
+    section.innerHTML = `
+      <div class="chapter-header" data-id="${ch.id}">
+        <div class="chapter-label">
+          <span class="chapter-tag">${ch.label}</span>
+          <span class="chapter-title">${ch.title}</span>
+        </div>
+        <div class="chapter-meta">
+          <span class="note-count" id="count-${ch.id}">0 notes</span>
+          <span style="font-size:0.8rem;color:var(--muted)">${ch.due}</span>
+          <span class="chevron" id="chev-${ch.id}">▼</span>
+        </div>
+      </div>
+      <div class="chapter-body" id="body-${ch.id}">
+        <div class="notes-list" id="notes-${ch.id}">
+          <div class="loading-state">Loading notes…</div>
+        </div>
+        <div class="add-note-form">
+          <div class="form-row">
+            <input type="text" id="name-${ch.id}" placeholder="Your name (optional)" maxlength="40"/>
+          </div>
+          <textarea class="note-input" id="text-${ch.id}" placeholder="Add a study note, mnemonic, key concept, or tip for this chapter…" maxlength="1000"></textarea>
+          <div class="submit-row">
+            <span class="submit-hint">Keep it helpful — no spoilers for quizzes 😄</span>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <span class="post-success" id="success-${ch.id}">✓ Posted!</span>
+              <button class="post-btn" id="btn-${ch.id}" data-chapter="${ch.id}">Post note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(section);
+
+    // Toggle open/close
+    section.querySelector(".chapter-header").addEventListener("click", () => {
+      const body = document.getElementById(`body-${ch.id}`);
+      const header = section.querySelector(".chapter-header");
+      const chev = document.getElementById(`chev-${ch.id}`);
+      const isOpen = body.classList.contains("open");
+      body.classList.toggle("open", !isOpen);
+      header.classList.toggle("open", !isOpen);
+      chev.classList.toggle("open", !isOpen);
+      if (!isOpen) loadNotes(ch.id);
+    });
+
+    // Post button
+    document.getElementById(`btn-${ch.id}`).addEventListener("click", () => postNote(ch.id));
+  });
+
+  // ── Load notes from Firestore ────────────────────────────
+  async function loadNotes(chapterId) {
+    const listEl = document.getElementById(`notes-${chapterId}`);
+    const countEl = document.getElementById(`count-${chapterId}`);
+
+    if (!configured) {
+      listEl.innerHTML = `<div class="empty-state">Firebase not set up yet — notes will appear here once configured.</div>`;
+      return;
+    }
+
+    listEl.innerHTML = `<div class="loading-state">Loading…</div>`;
+
+    try {
+      const q = query(
+        collection(db, "notes"),
+        where("chapter", "==", chapterId),
+        orderBy("createdAt", "desc")
+      );
+      const snap = await getDocs(q);
+      const notes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      countEl.textContent = `${notes.length} note${notes.length !== 1 ? "s" : ""}`;
+
+      if (notes.length === 0) {
+        listEl.innerHTML = `<div class="empty-state">No notes yet — be the first to add one!</div>`;
+        return;
+      }
+
+      listEl.innerHTML = notes.map(n => `
+        <div class="note-card">
+          <div class="note-meta">
+            <span class="note-author">${escHtml(n.author || "Anonymous")}</span>
+            <span class="note-date">${formatDate(n.createdAt)}</span>
+          </div>
+          <div class="note-text">${escHtml(n.text)}</div>
+        </div>
+      `).join("");
+
+    } catch (err) {
+      listEl.innerHTML = `<div class="empty-state">Could not load notes. Check your Firebase setup.</div>`;
+      console.error(err);
+    }
+  }
+
+  // ── Post a note ──────────────────────────────────────────
+  async function postNote(chapterId) {
+    const nameEl = document.getElementById(`name-${chapterId}`);
+    const textEl = document.getElementById(`text-${chapterId}`);
+    const btn    = document.getElementById(`btn-${chapterId}`);
+    const ok     = document.getElementById(`success-${chapterId}`);
+
+    const text = textEl.value.trim();
+    if (!text) { textEl.focus(); return; }
+
+    if (!configured) {
+      alert("Firebase is not configured yet. Add your credentials to the firebaseConfig object in the script.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Posting…";
+
+    try {
+      await addDoc(collection(db, "notes"), {
+        chapter: chapterId,
+        author: nameEl.value.trim() || "Anonymous",
+        text,
+        createdAt: serverTimestamp()
+      });
+
+      textEl.value = "";
+      nameEl.value = "";
+      ok.style.display = "inline-block";
+      setTimeout(() => { ok.style.display = "none"; }, 3000);
+
+      // Reload notes for this chapter
+      await loadNotes(chapterId);
+
+    } catch (err) {
+      alert("Could not post note. Check your Firebase config and Firestore rules.");
+      console.error(err);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "Post note";
+  }
+
+  // ── Helpers ──────────────────────────────────────────────
+  function escHtml(str) {
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function formatDate(ts) {
+    if (!ts) return "";
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  }
+
+</script>
+
+<!--
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔧 FIREBASE SETUP — 5 MINUTE GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to https://console.firebase.google.com
+2. Click "Add project" → name it (e.g. psyc101-study-hub) → Continue
+3. Disable Google Analytics if you don't need it → Create project
+4. In the left sidebar: Build → Firestore Database → Create database
+   · Choose "Start in test mode" (allows reads/writes for 30 days — fine for class)
+   · Pick any location → Enable
+5. In the left sidebar: Project Overview ⚙️ → Project settings
+   · Scroll to "Your apps" → click </> (Web app icon)
+   · Register app (any nickname) → copy the firebaseConfig object
+6. Paste it into the firebaseConfig variable in the <script> above
