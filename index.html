@@ -3,1017 +3,672 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSYC 101 Flashcards — CWI Summer 2026</title>
+<title>PSYC 101 — Study Hub</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #f9f8f6;
-  --surface: #ffffff;
-  --surface2: #f1efe8;
-  --border: rgba(0,0,0,0.12);
-  --border2: rgba(0,0,0,0.22);
-  --text: #1a1a18;
-  --text2: #5f5e5a;
-  --text3: #888780;
-  --green: #0f6e56;
-  --green-bg: #e1f5ee;
-  --red: #993c1d;
-  --red-bg: #faece7;
-  --accent: #1d9e75;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1c1c1a;
-    --surface: #2c2c2a;
-    --surface2: #383836;
-    --border: rgba(255,255,255,0.12);
-    --border2: rgba(255,255,255,0.22);
-    --text: #f0ede8;
-    --text2: #b4b2a9;
-    --text3: #888780;
-    --green: #5dcaa5;
-    --green-bg: #085041;
-    --red: #f0997b;
-    --red-bg: #4a1b0c;
-    --accent: #5dcaa5;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --text: #1a1a18;
+    --muted: #6b6a64;
+    --accent: #3d5a99;
+    --accent-light: #eef1f9;
+    --accent-hover: #2e4578;
+    --tag-bg: #e8ecf7;
+    --tag-text: #2e4578;
+    --success: #2d7a4f;
+    --success-bg: #eaf4ef;
+    --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Courier New', monospace;
   }
-}
 
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  padding: 2rem 1rem 4rem;
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.wrap { max-width: 660px; margin: 0 auto; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
 
-/* ── HOME SCREEN ── */
-#homeScreen { display: block; }
-#studyScreen { display: none; }
+  /* Header */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+  }
 
-.home-header { margin-bottom: 2rem; }
-.home-header h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
-.home-header p { font-size: 14px; color: var(--text2); }
+  header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
 
-.section-label {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-}
+  header p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1.1rem;
+  }
 
-.chapter-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-  margin-bottom: 2rem;
-}
+  .flashcard-link {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
 
-.chapter-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.1rem;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-  user-select: none;
-}
+  .flashcard-link:hover { background: rgba(255,255,255,0.25); }
 
-.chapter-card:hover { border-color: var(--border2); background: var(--surface2); }
-.chapter-card.selected { border: 2px solid var(--accent); background: var(--green-bg); }
+  /* Setup banner */
+  #setup-banner {
+    background: #fff8e1;
+    border-bottom: 1px solid #f0d060;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+    color: #5a4800;
+    text-align: center;
+  }
 
-.chapter-card .ch-num {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 4px;
-}
+  #setup-banner code {
+    background: #f0d060;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
 
-.chapter-card .ch-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
+  /* Layout */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+  }
 
-.chapter-card .ch-count {
-  font-size: 12px;
-  color: var(--text3);
-}
+  /* Visual Aids */
+  .visual-aids {
+    margin-bottom: 2rem;
+  }
 
-.chapter-card.coming-soon {
-  opacity: 0.45;
-  cursor: default;
-  pointer-events: none;
-}
+  .section-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
 
-.multi-controls {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-}
+  .visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
 
-.btn-outline {
-  padding: 8px 16px;
-  border-radius: var(--radius-md);
-  border: 0.5px solid var(--border2);
-  background: transparent;
-  color: var(--text2);
-  font-size: 13px;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: background 0.15s;
-}
-.btn-outline:hover { background: var(--surface2); color: var(--text); }
+  .visual-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
 
-.btn-start {
-  display: block;
-  width: 100%;
-  padding: 13px;
-  border-radius: var(--radius-md);
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: opacity 0.15s;
-  margin-bottom: 2rem;
-}
-.btn-start:disabled { opacity: 0.35; cursor: default; }
-.btn-start:not(:disabled):hover { opacity: 0.88; }
+  .visual-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(61,90,153,0.1);
+  }
 
-/* ── STUDY SCREEN ── */
-.study-topbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 1.5rem;
-}
+  .visual-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
 
-.btn-back {
-  border: 0.5px solid var(--border2);
-  border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--text2);
-  width: 34px;
-  height: 34px;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: var(--font);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.btn-back:hover { background: var(--surface2); }
+  .visual-info strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
 
-.study-title { font-size: 16px; font-weight: 500; color: var(--text); }
-.study-subtitle { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .visual-info span {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
 
-/* filter chips */
-.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
-.chip {
-  padding: 5px 14px;
-  border-radius: 999px;
-  border: 0.5px solid var(--border2);
-  font-size: 12px;
-  cursor: pointer;
-  background: transparent;
-  color: var(--text2);
-  font-family: var(--font);
-  transition: all 0.15s;
-}
-.chip.active { background: var(--surface2); color: var(--text); border-color: var(--border2); font-weight: 500; }
+  /* Chapter sections */
+  .chapter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
 
-/* stats */
-.stats { display: flex; gap: 12px; margin-bottom: 1rem; }
-.stat { background: var(--surface2); border-radius: var(--radius-md); padding: 10px 14px; flex: 1; text-align: center; }
-.stat-num { font-size: 20px; font-weight: 500; color: var(--text); }
-.stat-num.green { color: var(--green); }
-.stat-num.red { color: var(--red); }
-.stat-label { font-size: 11px; color: var(--text3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
 
-.progress-wrap { background: var(--surface2); border-radius: 999px; height: 6px; margin-bottom: 1.25rem; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+  .chapter-header:hover { background: var(--accent-light); }
 
-/* flashcard */
-.card-scene {
-  perspective: 1000px;
-  height: 240px;
-  margin-bottom: 1.25rem;
-  cursor: pointer;
-}
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-.card-scene.flipped .card-inner { transform: rotateY(180deg); }
-.card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: var(--radius-lg);
-  border: 0.5px solid var(--border);
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.card-front { background: var(--surface); }
-.card-back { background: var(--surface2); transform: rotateY(180deg); }
-.card-badge {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-}
-.card-term { font-size: 22px; font-weight: 500; color: var(--text); line-height: 1.35; }
-.card-def { font-size: 14px; color: var(--text2); line-height: 1.7; }
-.card-hint { font-size: 12px; color: var(--text3); margin-top: 1.25rem; }
+  .chapter-header.open { border-bottom-color: var(--border); }
 
-/* actions */
-.actions { display: flex; gap: 10px; margin-bottom: 1.25rem; }
-.btn {
-  flex: 1;
-  padding: 10px 0;
-  border-radius: var(--radius-md);
-  border: 0.5px solid var(--border2);
-  background: transparent;
-  color: var(--text);
-  font-size: 14px;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: background 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.btn:hover { background: var(--surface2); }
-.btn:active { transform: scale(0.98); }
-.btn-know { border-color: var(--green); color: var(--green); }
-.btn-know:hover { background: var(--green-bg); }
-.btn-again { border-color: var(--red); color: var(--red); }
-.btn-again:hover { background: var(--red-bg); }
+  .chapter-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-/* nav */
-.nav { display: flex; gap: 10px; align-items: center; justify-content: center; margin-bottom: 2rem; }
-.nav-btn {
-  border: 0.5px solid var(--border2);
-  border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--text2);
-  width: 36px; height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-family: var(--font);
-  transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--surface2); }
-.nav-counter { font-size: 14px; color: var(--text2); min-width: 80px; text-align: center; }
+  .chapter-tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
 
-/* complete */
-.complete { text-align: center; padding: 2.5rem 1rem; display: none; }
-.complete .emoji { font-size: 40px; margin-bottom: 12px; }
-.complete h2 { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
-.complete p { font-size: 14px; color: var(--text2); margin-bottom: 1.5rem; }
-.btn-restart {
-  padding: 10px 28px;
-  border-radius: var(--radius-md);
-  border: 0.5px solid var(--border2);
-  background: transparent;
-  color: var(--text);
-  font-size: 14px;
-  cursor: pointer;
-  font-family: var(--font);
-}
-.btn-restart:hover { background: var(--surface2); }
+  .chapter-title {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--text);
+  }
 
-footer {
-  text-align: center;
-  font-size: 12px;
-  color: var(--text3);
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 0.5px solid var(--border);
-}
+  .chapter-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .note-count {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .chevron {
+    font-size: 0.8rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .chevron.open { transform: rotate(180deg); }
+
+  /* Chapter body */
+  .chapter-body {
+    display: none;
+    padding: 1.25rem;
+  }
+
+  .chapter-body.open { display: block; }
+
+  /* Notes list */
+  .notes-list {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .note-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.85rem 1rem;
+  }
+
+  .note-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  .note-author {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .note-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .delete-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+  }
+
+  .delete-btn:hover {
+    background: #fde8e8;
+    color: #c0392b;
+  }
+
+  .note-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    border: 1px dashed var(--border);
+    border-radius: 7px;
+    margin-bottom: 1.25rem;
+  }
+
+  .loading-state {
+    text-align: center;
+    padding: 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  /* Add note form */
+  .add-note-form {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 0.65rem;
+  }
+
+  .form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .form-row input:focus { border-color: var(--accent); }
+
+  textarea.note-input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--text);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea.note-input:focus { border-color: var(--accent); }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .submit-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  button.post-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  button.post-btn:hover { background: var(--accent-hover); }
+  button.post-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .post-success {
+    font-size: 0.8rem;
+    color: var(--success);
+    background: var(--success-bg);
+    border-radius: 5px;
+    padding: 4px 10px;
+    display: none;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 540px) {
+    header h1 { font-size: 1.4rem; }
+    .form-row { flex-direction: column; }
+    .submit-row { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<!-- ═══════════════════════════════════════════
-     HOME SCREEN
-════════════════════════════════════════════ -->
-<div id="homeScreen">
-  <div class="home-header">
-    <h1>PSYC 101 Flashcards</h1>
-    <p>College of Western Idaho · Summer 2026 · Myers &amp; DeWall, 6th ed.</p>
-  </div>
 
-  <div class="section-label">Select chapters to study</div>
 
-  <div class="chapter-grid" id="chapterGrid"></div>
+<header>
+  <h1>PSYC 101 — Study Hub</h1>
+  <p>Shared notes from students, organized by chapter</p>
+  <a class="flashcard-link" href="flashcards.html">↗ Open Flashcard App</a>
+</header>
 
-  <div class="multi-controls">
-    <button class="btn-outline" onclick="selectAll()">Select all available</button>
-    <button class="btn-outline" onclick="clearAll()">Clear selection</button>
-    <button class="btn-outline" onclick="openCreateModal()">+ Create card</button>
-  </div>
+<main>
 
-  <button class="btn-start" id="startBtn" onclick="startStudy()" disabled>
-    Start flashcards
-  </button>
-
-  <!-- CUSTOM CARDS LIST -->
-  <div id="customCardsSection" style="display:none; margin-top:1.5rem;">
-    <div class="section-label" style="margin-bottom:10px;">Your custom cards</div>
-    <div id="customCardsList"></div>
-  </div>
-</div>
-
-<!-- CREATE CARD MODAL -->
-<div id="createModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; align-items:center; justify-content:center; padding:1rem;">
-  <div style="background:var(--surface); border-radius:var(--radius-lg); padding:1.5rem; width:100%; max-width:480px; border:0.5px solid var(--border2);">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
-      <div style="font-size:16px; font-weight:500;">Create a new card</div>
-      <button onclick="closeCreateModal()" style="background:none; border:none; font-size:20px; cursor:pointer; color:var(--text2); line-height:1;">&times;</button>
-    </div>
-    <div style="margin-bottom:0.75rem;">
-      <div class="section-label" style="margin-bottom:6px;">Chapter</div>
-      <select id="createChapter" style="width:100%; padding:8px 10px; border-radius:var(--radius-md); border:0.5px solid var(--border2); background:var(--bg); color:var(--text); font-family:var(--font); font-size:13px;"></select>
-    </div>
-    <div style="margin-bottom:0.75rem;">
-      <div class="section-label" style="margin-bottom:6px;">Tag / category</div>
-      <input id="createTag" type="text" placeholder="e.g. Definition, Core concept…" style="width:100%; padding:8px 10px; border-radius:var(--radius-md); border:0.5px solid var(--border2); background:var(--bg); color:var(--text); font-family:var(--font); font-size:13px;">
-    </div>
-    <div style="margin-bottom:0.75rem;">
-      <div class="section-label" style="margin-bottom:6px;">Term (front)</div>
-      <input id="createTerm" type="text" placeholder="Term or question" style="width:100%; padding:8px 10px; border-radius:var(--radius-md); border:0.5px solid var(--border2); background:var(--bg); color:var(--text); font-family:var(--font); font-size:13px;">
-    </div>
-    <div style="margin-bottom:1.25rem;">
-      <div class="section-label" style="margin-bottom:6px;">Definition (back)</div>
-      <textarea id="createDef" rows="3" placeholder="Definition or answer" style="width:100%; padding:8px 10px; border-radius:var(--radius-md); border:0.5px solid var(--border2); background:var(--bg); color:var(--text); font-family:var(--font); font-size:13px; resize:vertical;"></textarea>
-    </div>
-    <div id="createError" style="color:var(--red); font-size:12px; margin-bottom:0.75rem; display:none;"></div>
-    <div style="display:flex; gap:10px;">
-      <button class="btn-outline" onclick="closeCreateModal()" style="flex:1;">Cancel</button>
-      <button onclick="saveNewCard()" style="flex:2; padding:9px; border-radius:var(--radius-md); border:none; background:var(--accent); color:#fff; font-size:14px; font-weight:500; cursor:pointer; font-family:var(--font);">Add card</button>
-    </div>
-  </div>
-</div>
-
-<div id="psycFooter">
-  <footer>
-    Built from Myers &amp; DeWall, <em>Psychology in Everyday Life</em>, 6th ed. (2023) &middot; For personal study use
-  </footer>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     STUDY SCREEN
-════════════════════════════════════════════ -->
-<div id="studyScreen">
-  <div class="study-topbar">
-    <button class="btn-back" onclick="goHome()" title="Back to chapters">&#8592;</button>
-    <div>
-      <div class="study-title" id="studyTitle"></div>
-      <div class="study-subtitle" id="studySubtitle"></div>
+  <!-- Visual Aids -->
+  <div class="visual-aids">
+    <div class="section-heading">Visual Aids</div>
+    <div class="visual-grid">
+      <a class="visual-card" href="neurotransmitter-body-map.html" target="_blank">
+        <div class="visual-icon">🧠</div>
+        <div class="visual-info">
+          <strong>Neurotransmitter Body Map</strong>
+          <span>Where each neurotransmitter acts in the body — Ch. 2</span>
+        </div>
+      </a>
+      <a class="visual-card" href="neuron-structure.png" target="_blank">
+        <div class="visual-icon">🔬</div>
+        <div class="visual-info">
+          <strong>Neuron Structure</strong>
+          <span>Dendrites, cell body, axon & myelin sheath — Ch. 2</span>
+        </div>
+      </a>
+      <a class="visual-card" href="nervous-system.png" target="_blank">
+        <div class="visual-icon">🫀</div>
+        <div class="visual-info">
+          <strong>The Nervous System</strong>
+          <span>Central vs. peripheral, autonomic & somatic divisions — Ch. 2</span>
+        </div>
+      </a>
+      <a class="visual-card" href="types-of-neural-measures.png" target="_blank">
+        <div class="visual-icon">📡</div>
+        <div class="visual-info">
+          <strong>Types of Neural Measures</strong>
+          <span>EEG, MEG, PET, MRI & fMRI compared — Ch. 2</span>
+        </div>
+      </a>
     </div>
   </div>
 
-  <div class="filter-row" id="filterRow"></div>
+  <!-- Chapters will be rendered here by JS -->
+  <div id="chapters-container"></div>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Total</div></div>
-    <div class="stat"><div class="stat-num green" id="statKnow">0</div><div class="stat-label">Know it</div></div>
-    <div class="stat"><div class="stat-num red" id="statAgain">0</div><div class="stat-label">Still learning</div></div>
-  </div>
+</main>
 
-  <div class="progress-wrap"><div class="progress-fill" id="progressBar"></div></div>
+<footer>
+  PSYC 101 · Summer 2026 · Notes are student-submitted and unmoderated — use your own judgment.
+</footer>
 
-  <div class="card-scene" id="cardScene" onclick="flipCard()">
-    <div class="card-inner">
-      <div class="card-face card-front">
-        <div class="card-badge" id="cardBadge"></div>
-        <div class="card-term" id="cardTerm"></div>
-        <div class="card-hint">tap to reveal definition</div>
-      </div>
-      <div class="card-face card-back">
-        <div class="card-badge" id="cardChapter"></div>
-        <div class="card-def" id="cardDef"></div>
-        <div class="card-hint">tap to flip back</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="actions" id="actions" style="display:none;">
-    <button class="btn btn-again" onclick="markCard(false)">&#8635; Still learning</button>
-    <button class="btn btn-know" onclick="markCard(true)">&#10003; Know it</button>
-  </div>
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, query, where, orderBy, getDocs, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  <div class="nav">
-    <button class="nav-btn" onclick="prevCard()">&#8592;</button>
-    <div class="nav-counter" id="navCounter">1 / 0</div>
-    <button class="nav-btn" onclick="nextCard()">&#8594;</button>
-  </div>
 
-  <div class="complete" id="complete">
-    <div class="emoji">&#127881;</div>
-    <h2>Deck complete!</h2>
-    <p id="completeDetail"></p>
-    <button class="btn-restart" onclick="restartDeck()">Study again</button>
-    &nbsp;
-    <button class="btn-restart" id="studyAgainBtn" onclick="restartStillLearning()" style="display:none;">Study still learning</button>
-    &nbsp;
-    <button class="btn-restart" onclick="goHome()">Choose chapters</button>
-  </div>
-</div>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCGlhtk6i6G2l02iC1qwCBGQ3plKGEI72U",
+    authDomain: "psyc-study-hub.firebaseapp.com",
+    projectId: "psyc-study-hub",
+    storageBucket: "psyc-study-hub.firebasestorage.app",
+    messagingSenderId: "289930203679",
+    appId: "1:289930203679:web:a3168688d97cbd15e4bb2a"
+  };
 
-<script>
-/* ═══════════════════════════════════════════
-   DATA — add new chapters below as the
-   semester progresses. Each chapter is an
-   object with: id, num, title, cards[].
-   Cards have: term, def, tag.
-════════════════════════════════════════════ */
-const CHAPTERS = [
-  {
-    id: "ch1",
-    num: "Chapter 1",
-    title: "Psychology's Roots, Critical Thinking & Self-Improvement",
-    cards: [
-      { term: "Psychology", def: "The scientific study of behavior and mental processes — how we act, think, and feel.", tag: "Definition" },
-      { term: "Scientific attitude", def: "The combination of curiosity, skepticism, and humility that underlies rigorous scientific inquiry.", tag: "Core concept" },
-      { term: "Critical thinking", def: "Thinking that does not blindly accept arguments and conclusions; examines assumptions, evaluates evidence, and considers alternative explanations.", tag: "Core concept" },
-      { term: "Hindsight bias", def: "The tendency to believe, after learning an outcome, that we would have predicted it — the 'I knew it all along' phenomenon.", tag: "Bias/Error" },
-      { term: "Theory", def: "An explanation that uses ideas and principles to organize observations and predict behaviors or events.", tag: "Research method" },
-      { term: "Hypothesis", def: "A testable prediction derived from a theory; specifies what results would support or contradict the theory.", tag: "Research method" },
-      { term: "Operational definition", def: "A precise, measurable statement of the procedures used to define research variables (e.g., 'sleep-deprived = 2+ fewer hours than normal').", tag: "Research method" },
-      { term: "Replication", def: "Repeating a study with different participants to confirm whether the original findings can be reproduced.", tag: "Research method" },
-      { term: "Preregistration", def: "Publicly posting a study's hypotheses and methods before collecting data, to prevent later changing of hypotheses to fit results.", tag: "Research method" },
-      { term: "Case study", def: "An in-depth analysis of one individual or group; reveals possibilities but may not generalize to all people.", tag: "Research method" },
-      { term: "Naturalistic observation", def: "Watching and recording behavior in naturally occurring situations without manipulation or control.", tag: "Research method" },
-      { term: "Survey", def: "A method of gathering self-reported data from a large sample via questions about behaviors or opinions.", tag: "Research method" },
-      { term: "Random sample", def: "A sample in which every person in the population has an equal chance of being included, allowing results to generalize.", tag: "Research method" },
-      { term: "Correlation", def: "A statistical relationship between two variables; shows how well one predicts the other but does not prove causation.", tag: "Research method" },
-      { term: "Experiment", def: "A study that manipulates one or more independent variables under controlled conditions to discover cause and effect.", tag: "Research method" },
-      { term: "Independent variable", def: "The factor that is manipulated by the researcher in an experiment.", tag: "Research method" },
-      { term: "Dependent variable", def: "The outcome that is measured in an experiment; it depends on the independent variable.", tag: "Research method" },
-      { term: "Control group", def: "Participants in an experiment who are not exposed to the treatment; they provide a baseline for comparison.", tag: "Research method" },
-      { term: "Experimental group", def: "Participants in an experiment who are exposed to the treatment (the independent variable).", tag: "Research method" },
-      { term: "Random assignment", def: "Assigning participants to experimental and control groups by chance, reducing the effect of confounding variables.", tag: "Research method" },
-      { term: "Confounding variable", def: "A factor other than the independent variable that might produce an effect; must be controlled in experiments.", tag: "Research method" },
-      { term: "Double-blind procedure", def: "An experimental design in which neither participants nor researchers know who received the treatment, reducing bias.", tag: "Research method" },
-      { term: "Placebo effect", def: "A result caused by expectations alone rather than by the actual treatment.", tag: "Research method" },
-      { term: "Informed consent", def: "An ethical requirement that participants know enough about a study to decide whether to participate.", tag: "Ethics" },
-      { term: "Debriefing", def: "Explaining to participants the full purpose of a study after it is completed, including any deception used.", tag: "Ethics" },
-      { term: "Peer reviewers", def: "Scientists who evaluate a study's theory, originality, and accuracy before it is published in a scientific journal.", tag: "Ethics" },
-      { term: "Structuralism", def: "An early psychological school that used introspection to explore the elemental structure of the human mind (Wundt's approach).", tag: "History" },
-      { term: "Functionalism", def: "An early school influenced by William James and Darwin that focused on how mental and behavioral processes help an organism adapt.", tag: "History" },
-      { term: "Behaviorism", def: "The view that psychology should study only observable, measurable behavior — not inner mental states.", tag: "History" },
-      { term: "Humanistic psychology", def: "A school that emphasized growth, potential, and the importance of love and acceptance in shaping behavior.", tag: "History" },
-      { term: "Cognitive psychology", def: "The scientific study of mental processes — thinking, knowing, remembering, and communicating.", tag: "History" },
-      { term: "Cognitive neuroscience", def: "An interdisciplinary field that studies the brain activity underlying mental processes.", tag: "History" },
-      { term: "Wilhelm Wundt", def: "Founded the first psychological laboratory in 1879 at Leipzig, Germany; conducted psychology's first experiment measuring reaction time.", tag: "History" },
-      { term: "Mary Whiton Calkins", def: "Outscored all male students on Harvard PhD exams yet was denied the degree; became the first female APA president in 1905.", tag: "History" },
-      { term: "Margaret Floy Washburn", def: "First woman to officially receive a psychology PhD; helped found animal behavior research; became second female APA president in 1921.", tag: "History" },
-      { term: "Biopsychosocial approach", def: "An integrated perspective that considers biological, psychological, and social-cultural factors to understand behavior.", tag: "Core concept" },
-      { term: "Nature–nurture issue", def: "The longstanding debate over the relative contributions of genes (nature) and experience or environment (nurture) to behavior.", tag: "Core concept" },
-      { term: "Dual processing", def: "The principle that much information is processed simultaneously on conscious (explicit) and unconscious (implicit) tracks.", tag: "Core concept" },
-      { term: "Positive psychology", def: "The scientific study of human flourishing — focusing on strengths, virtues, and factors that allow individuals and communities to thrive.", tag: "Core concept" },
-      { term: "Testing effect", def: "Enhanced memory and learning that results from being tested or retrieving information, rather than from simply rereading.", tag: "Study skills" },
-      { term: "SQ3R", def: "A five-step study method: Survey, Question, Read, Retrieve, Review — applies memory research to improve retention.", tag: "Study skills" },
-      { term: "Psychiatry", def: "A medical specialty that diagnoses and treats mental disorders; psychiatrists are medical doctors who can prescribe medication.", tag: "Definition" },
-      { term: "Clinical psychology", def: "A branch of psychology that assesses and treats mental, emotional, and behavioral disorders.", tag: "Definition" },
-      { term: "Community psychology", def: "A branch that studies how people interact with social environments and focuses on social problems and prevention.", tag: "Definition" },
-    ]
-  },
-  /* ── FUTURE CHAPTERS: paste new chapter objects here ── */
-  {
-    id: "ch2",
-    num: "Chapter 2",
-    title: "The Biology of Behavior and Consciousness",
-    cards: [
-      { term: "Neuroplasticity", def: "The brain's ability to change, especially during childhood, by reorganizing after damage or by building new pathways based on experience.", tag: "Neuroscience" },
-      { term: "Neuron", def: "A nerve cell; the basic building block of the nervous system. Contains dendrites that receive information and axons that send it.", tag: "Neuroscience" },
-      { term: "Dendrites", def: "Branching fibers of a neuron that receive and integrate incoming information and conduct it toward the cell body.", tag: "Neuroscience" },
-      { term: "Axon", def: "The neuron extension that sends messages away from the cell body to other neurons, muscles, or glands.", tag: "Neuroscience" },
-      { term: "Action potential", def: "An electrical signal (nerve impulse) that travels down an axon when a neuron fires.", tag: "Neuroscience" },
-      { term: "Glial cells (glia)", def: "Cells that support, nourish, and protect neurons; provide myelin insulation; and send messages to one another.", tag: "Neuroscience" },
-      { term: "Synapse", def: "The junction between the axon tip of a sending neuron and the dendrite or cell body of a receiving neuron.", tag: "Neuroscience" },
-      { term: "Synaptic gap (synaptic cleft)", def: "The tiny gap at the synapse across which neurotransmitters travel from one neuron to another.", tag: "Neuroscience" },
-      { term: "Refractory period", def: "A brief resting pause after a neuron fires, during which it cannot fire again.", tag: "Neuroscience" },
-      { term: "All-or-none response", def: "A neuron either fires completely or does not fire at all — there is no partial firing.", tag: "Neuroscience" },
-      { term: "Neurotransmitters", def: "Neuron-produced chemicals that cross the synaptic gap to carry messages to other neurons or muscles.", tag: "Neuroscience" },
-      { term: "Reuptake", def: "Reabsorption of a neurotransmitter by the sending neuron after it has crossed the synapse.", tag: "Neuroscience" },
-      { term: "Acetylcholine (ACh)", def: "Neurotransmitter that enables muscle action, learning, and memory. Deteriorates with Alzheimer's disease.", tag: "Neurotransmitters" },
-      { term: "Dopamine", def: "Neurotransmitter that influences movement, learning, attention, and emotion. Oversupply linked to schizophrenia; undersupply linked to Parkinson's disease.", tag: "Neurotransmitters" },
-      { term: "Serotonin", def: "Neurotransmitter that affects mood, hunger, sleep, and arousal. Undersupply linked to depression.", tag: "Neurotransmitters" },
-      { term: "Norepinephrine", def: "Neurotransmitter that helps control alertness and arousal. Undersupply can depress mood.", tag: "Neurotransmitters" },
-      { term: "GABA", def: "A major inhibitory neurotransmitter. Undersupply linked to seizures, tremors, and insomnia.", tag: "Neurotransmitters" },
-      { term: "Glutamate", def: "A major excitatory neurotransmitter involved in memory. Oversupply can cause migraines or seizures.", tag: "Neurotransmitters" },
-      { term: "Endorphins", def: "Neurotransmitters that influence the perception of pain or pleasure. Opioid drugs can suppress the body's natural endorphin supply.", tag: "Neurotransmitters" },
-      { term: "Central nervous system (CNS)", def: "The brain and spinal cord.", tag: "Nervous System" },
-      { term: "Peripheral nervous system (PNS)", def: "The sensory and motor neurons that connect the CNS to the rest of the body.", tag: "Nervous System" },
-      { term: "Sensory neurons", def: "Neurons that carry incoming messages from the body's tissues and sensory receptors to the brain and spinal cord.", tag: "Nervous System" },
-      { term: "Motor neurons", def: "Neurons that carry outgoing instructions from the CNS to the body's muscles.", tag: "Nervous System" },
-      { term: "Interneurons", def: "Neurons present in the brain and spinal cord that communicate internally and process information between sensory inputs and motor outputs.", tag: "Nervous System" },
-      { term: "Somatic nervous system", def: "Part of the PNS that controls the body's skeletal muscles (also called the skeletal nervous system).", tag: "Nervous System" },
-      { term: "Autonomic nervous system (ANS)", def: "Part of the PNS that controls the glands and muscles of internal organs, regulating functions like heartbeat and digestion.", tag: "Nervous System" },
-      { term: "Sympathetic nervous system", def: "Division of the ANS that arouses the body and mobilizes energy during stress (fight-or-flight).", tag: "Nervous System" },
-      { term: "Parasympathetic nervous system", def: "Division of the ANS that calms the body and conserves energy after stress.", tag: "Nervous System" },
-      { term: "Endocrine system", def: "The body's 'slow' chemical communication system; a set of glands that secrete hormones into the bloodstream.", tag: "Endocrine System" },
-      { term: "Hormones", def: "Chemical messengers manufactured by endocrine glands that travel through the bloodstream and affect other tissues.", tag: "Endocrine System" },
-      { term: "Adrenal glands", def: "Endocrine glands that sit above the kidneys and secrete epinephrine (adrenaline) and norepinephrine to help arouse the body during stress.", tag: "Endocrine System" },
-      { term: "Pituitary gland", def: "The 'master gland' of the endocrine system, controlled by the hypothalamus; releases hormones including growth hormones and oxytocin.", tag: "Endocrine System" },
-      { term: "EEG (Electroencephalogram)", def: "A brain-imaging tool that uses scalp electrodes to record waves of electrical activity across the brain's surface.", tag: "Brain Tools" },
-      { term: "PET scan", def: "A brain-imaging technique that detects brain activity by showing where a radioactive form of glucose goes while the brain performs a task.", tag: "Brain Tools" },
-      { term: "MRI", def: "Magnetic resonance imaging; uses magnetic fields and radio waves to produce computer-generated images of brain anatomy.", tag: "Brain Tools" },
-      { term: "fMRI", def: "Functional MRI; reveals brain activity by comparing successive MRI scans to show blood flow and active brain regions.", tag: "Brain Tools" },
-      { term: "Brainstem", def: "The oldest part of the brain, beginning at the top of the spinal cord; responsible for automatic survival functions.", tag: "Brain Structures" },
-      { term: "Medulla", def: "Part of the brainstem that controls heartbeat and breathing.", tag: "Brain Structures" },
-      { term: "Thalamus", def: "The brain's sensory control center, located on top of the brainstem; routes messages to the cerebral cortex and transmits replies.", tag: "Brain Structures" },
-      { term: "Reticular formation", def: "A nerve network in the brainstem that controls arousal and filters incoming stimuli.", tag: "Brain Structures" },
-      { term: "Cerebellum", def: "The 'little brain' at the rear of the brainstem; processes sensory input, coordinates movement and balance, and enables nonverbal learning and memory.", tag: "Brain Structures" },
-      { term: "Limbic system", def: "A set of neural structures at the border of the brainstem and cerebral hemispheres associated with emotions, drives, and memory.", tag: "Brain Structures" },
-      { term: "Amygdala", def: "Two lima-bean-sized neural clusters in the limbic system that are linked to emotion, especially aggression and fear.", tag: "Brain Structures" },
-      { term: "Hypothalamus", def: "A neural structure below the thalamus that controls body temperature, hunger, thirst, and sex drive; links the nervous system to the endocrine system.", tag: "Brain Structures" },
-      { term: "Hippocampus", def: "A neural center in the limbic system that helps process and store explicit memories.", tag: "Brain Structures" },
-      { term: "Cerebral cortex", def: "The intricate fabric of interconnected neural cells covering the cerebral hemispheres; the ultimate control and information-processing center.", tag: "Brain Structures" },
-      { term: "Frontal lobes", def: "Cortex regions at the front of the brain involved in speaking, muscle movement, planning, and judgment.", tag: "Brain Structures" },
-      { term: "Parietal lobes", def: "Cortex regions at the top and rear of the brain that receive sensory input for touch and body position.", tag: "Brain Structures" },
-      { term: "Occipital lobes", def: "Cortex regions at the rear of the brain that contain the visual cortex and process visual information.", tag: "Brain Structures" },
-      { term: "Temporal lobes", def: "Cortex regions above the ears that contain the auditory cortex and process sound.", tag: "Brain Structures" },
-      { term: "Motor cortex", def: "Area at the rear of the frontal lobes that controls voluntary movements.", tag: "Brain Structures" },
-      { term: "Somatosensory cortex", def: "Area at the front of the parietal lobes that registers and processes body touch and movement sensations.", tag: "Brain Structures" },
-      { term: "Association areas", def: "Areas of the cerebral cortex involved in higher mental functions such as learning, thinking, remembering, and speaking.", tag: "Brain Structures" },
-      { term: "Corpus callosum", def: "The large band of neural fibers connecting the brain's two hemispheres, allowing communication between them.", tag: "Brain Structures" },
-      { term: "Split brain", def: "A condition resulting from surgery that separates the two brain hemispheres by cutting the corpus callosum.", tag: "Brain Structures" },
-      { term: "Neurogenesis", def: "The formation of new neurons, which occurs in some brain areas even in adulthood.", tag: "Neuroscience" },
-      { term: "Consciousness", def: "Subjective awareness of oneself and one's environment; enables voluntary control, communication, and focused attention.", tag: "Consciousness" },
-      { term: "Circadian rhythm", def: "The body's internal biological clock; regular bodily rhythms that occur on a 24-hour cycle.", tag: "Sleep & Dreams" },
-      { term: "REM sleep", def: "Rapid eye movement sleep; a recurring sleep stage during which vivid dreams commonly occur; also called paradoxical sleep.", tag: "Sleep & Dreams" },
-      { term: "N3 sleep", def: "The deep sleep stage characterized by slow, large delta waves; most restorative stage of sleep.", tag: "Sleep & Dreams" },
-      { term: "Insomnia", def: "A sleep disorder characterized by persistent problems falling or staying asleep.", tag: "Sleep & Dreams" },
-      { term: "Narcolepsy", def: "A sleep disorder characterized by uncontrollable sleep attacks, sometimes directly into REM sleep.", tag: "Sleep & Dreams" },
-      { term: "Sleep apnea", def: "A sleep disorder in which breathing repeatedly stops and starts during sleep.", tag: "Sleep & Dreams" },
-      { term: "Manifest content", def: "According to Freud, the remembered story line of a dream (as opposed to latent, hidden content).", tag: "Sleep & Dreams" },
-      { term: "Latent content", def: "According to Freud, the underlying meaning of a dream (as opposed to its manifest content).", tag: "Sleep & Dreams" },
-    ]
-  },
-  {
-    id: "ch3",
-    num: "Chapter 3",
-    title: "Developing Through the Life Span",
-    cards: [
-      { term: "Developmental psychology", def: "The branch of psychology that studies physical, cognitive, and social changes throughout the life span.", tag: "Definition" },
-      { term: "Nature–nurture issue", def: "The debate over the relative contributions of genetic inheritance (nature) and experience/environment (nurture) to development.", tag: "Core concept" },
-      { term: "Continuity vs. stages", def: "The debate over whether development is a gradual, continuous process or occurs in distinct, separate stages.", tag: "Core concept" },
-      { term: "Stability vs. change", def: "The debate over whether personality traits and characteristics persist through life or change as we age.", tag: "Core concept" },
-      { term: "Chromosomes", def: "Threadlike structures made of DNA molecules that contain the genes.", tag: "Genetics" },
-      { term: "DNA", def: "Deoxyribonucleic acid; the molecule containing the genetic information that makes up the chromosomes.", tag: "Genetics" },
-      { term: "Genes", def: "Biochemical units of heredity that make up the chromosomes; segments of DNA that code for proteins.", tag: "Genetics" },
-      { term: "Genome", def: "The complete instructions for making an organism, consisting of all the genetic material in its chromosomes.", tag: "Genetics" },
-      { term: "Epigenetics", def: "The study of the molecular ways environments can influence gene expression without changing the DNA sequence itself.", tag: "Genetics" },
-      { term: "Zygote", def: "A fertilized egg that enters a 2-week period of rapid cell division and develops into an embryo.", tag: "Prenatal Development" },
-      { term: "Embryo", def: "The developing human organism from about 2 weeks after fertilization through 8 weeks.", tag: "Prenatal Development" },
-      { term: "Fetus", def: "The developing human organism from 9 weeks after conception to birth.", tag: "Prenatal Development" },
-      { term: "Teratogen", def: "An agent (such as a chemical or virus) that can reach the embryo or fetus during prenatal development and cause harm.", tag: "Prenatal Development" },
-      { term: "Fetal alcohol syndrome (FAS)", def: "Physical and cognitive deficits in children caused by their birth mother's heavy alcohol consumption during pregnancy.", tag: "Prenatal Development" },
-      { term: "Identical (monozygotic) twins", def: "Twins who develop from a single fertilized egg that splits in two, creating two genetically identical siblings.", tag: "Genetics" },
-      { term: "Fraternal (dizygotic) twins", def: "Twins who develop from two separate fertilized eggs; genetically no more similar than ordinary siblings.", tag: "Genetics" },
-      { term: "Maturation", def: "Biological growth processes that lead to orderly changes in behavior, relatively independent of experience.", tag: "Infancy & Childhood" },
-      { term: "Cognition", def: "All mental activities associated with thinking, knowing, remembering, and communicating.", tag: "Cognitive Development" },
-      { term: "Schema", def: "A concept or mental framework that organizes and interprets information.", tag: "Cognitive Development" },
-      { term: "Assimilation", def: "Interpreting new experiences in terms of existing schemas.", tag: "Cognitive Development" },
-      { term: "Accommodation", def: "Adapting existing schemas or creating new ones to incorporate new information that doesn't fit.", tag: "Cognitive Development" },
-      { term: "Sensorimotor stage", def: "Piaget's first stage (birth to ~2 years); infants experience the world through senses and actions.", tag: "Cognitive Development" },
-      { term: "Object permanence", def: "The awareness that things continue to exist even when not perceived; develops during the sensorimotor stage.", tag: "Cognitive Development" },
-      { term: "Preoperational stage", def: "Piaget's second stage (~2–7 years); children use language and symbols but cannot yet perform mental operations; marked by egocentrism.", tag: "Cognitive Development" },
-      { term: "Egocentrism", def: "A preoperational child's difficulty in taking another person's point of view.", tag: "Cognitive Development" },
-      { term: "Concrete operational stage", def: "Piaget's third stage (~7–11 years); children can think logically about concrete events and understand conservation.", tag: "Cognitive Development" },
-      { term: "Conservation", def: "The understanding that properties such as mass, volume, and number remain the same despite changes in the forms of objects.", tag: "Cognitive Development" },
-      { term: "Formal operational stage", def: "Piaget's fourth stage (~12 through adulthood); abstract and hypothetical reasoning becomes possible.", tag: "Cognitive Development" },
-      { term: "Vygotsky's scaffolding", def: "Temporary support given to a child by a more knowledgeable person to enable higher-level thinking; withdrawn as the child gains competence.", tag: "Cognitive Development" },
-      { term: "Theory of mind", def: "The ability to understand that others have mental states (beliefs, intentions) that differ from one's own; emerges around ages 3–4½.", tag: "Cognitive Development" },
-      { term: "Stranger anxiety", def: "Fear of unfamiliar people that infants commonly display, beginning around 8 months of age.", tag: "Social Development" },
-      { term: "Attachment", def: "An emotional bond with another person; infants show attachment by seeking closeness and showing distress when separated.", tag: "Social Development" },
-      { term: "Secure attachment", def: "Attachment style in which an infant feels safe exploring when the caregiver is present and is comforted upon reunion.", tag: "Social Development" },
-      { term: "Insecure attachment", def: "Attachment style in which an infant is anxious, avoidant, or clingy; associated with insensitive caregiving.", tag: "Social Development" },
-      { term: "Authoritarian parenting", def: "A parenting style that is coercive and demanding; associated with lower self-esteem and social skill in children.", tag: "Social Development" },
-      { term: "Permissive parenting", def: "A parenting style that is undemanding and unrestraining; associated with more aggression and immaturity in children.", tag: "Social Development" },
-      { term: "Authoritative parenting", def: "A parenting style that is responsive and confrontive; associated with highest self-esteem, self-reliance, and social competence.", tag: "Social Development" },
-      { term: "Neglectful parenting", def: "A parenting style characterized by lack of involvement; associated with poor academic and social outcomes.", tag: "Social Development" },
-      { term: "Puberty", def: "The period of sexual maturation during which a person becomes capable of reproducing.", tag: "Adolescence" },
-      { term: "Preconventional morality", def: "Kohlberg's first level of moral reasoning; focused on self-interest and avoiding punishment (before age 9).", tag: "Moral Development" },
-      { term: "Conventional morality", def: "Kohlberg's second level; focused on upholding laws and rules to gain social approval (early adolescence).", tag: "Moral Development" },
-      { term: "Postconventional morality", def: "Kohlberg's third level; actions reflect belief in basic rights and self-defined ethical principles (adolescence and beyond).", tag: "Moral Development" },
-      { term: "Identity", def: "One's sense of self; according to Erikson, forming a clear and stable identity is the central task of adolescence.", tag: "Adolescence" },
-      { term: "Social identity", def: "The 'we' aspect of one's self-concept; the part of identity that comes from group memberships.", tag: "Adolescence" },
-      { term: "Erikson's stages", def: "A theory of psychosocial development with eight stages across the life span, each involving a specific crisis to resolve (e.g., trust vs. mistrust, identity vs. role confusion).", tag: "Social Development" },
-      { term: "Emerging adulthood", def: "The period from about age 18 to the mid-twenties; between adolescence and full adult independence.", tag: "Adulthood" },
-      { term: "Menopause", def: "The cessation of menstruation; marks the end of a woman's reproductive years, typically in middle adulthood.", tag: "Adulthood" },
-      { term: "Infantile amnesia", def: "The inability to consciously recall events from before about age 3, due to incomplete brain development.", tag: "Infancy & Childhood" },
-      { term: "Temperament", def: "A person's characteristic emotional reactivity and intensity; largely biologically based and present from infancy.", tag: "Infancy & Childhood" },
-      { term: "Imaginary audience", def: "An adolescent's belief that others are constantly watching and judging them; a form of egocentrism.", tag: "Adolescence" },
-      { term: "Personal fable", def: "An adolescent's sense of personal uniqueness and invulnerability; a form of egocentrism.", tag: "Adolescence" },
-    ]
-  },
-  { id: "ch5", num: "Chapter 5", title: "Developing Through the Life Span", cards: [], coming: true },
-  { id: "ch6", num: "Chapter 6", title: "Sensation & Perception", cards: [], coming: true },
-  { id: "ch7", num: "Chapter 7", title: "Learning", cards: [], coming: true },
-  { id: "ch8", num: "Chapter 8", title: "Memory", cards: [], coming: true },
-  { id: "ch9", num: "Chapter 9", title: "Thinking, Language & Intelligence", cards: [], coming: true },
-  { id: "ch10", num: "Chapter 10", title: "Motivation & Emotion", cards: [], coming: true },
-  { id: "ch11", num: "Chapter 11", title: "Social Psychology", cards: [], coming: true },
-  { id: "ch12", num: "Chapter 12", title: "Personality", cards: [], coming: true },
-  { id: "ch13", num: "Chapter 13", title: "Psychological Disorders", cards: [], coming: true },
-  { id: "ch14", num: "Chapter 14", title: "Therapy", cards: [], coming: true },
-];
+  // Chapter definitions — matches your course schedule
+  const CHAPTERS = [
+    { id: "ch1",    label: "Chapter 1",     title: "Thinking Critically with Psychological Science",  due: "Due Jun 7" },
+    { id: "ch2_3",  label: "Chapters 2 & 3", title: "Neuroscience & Consciousness",                   due: "Due Jun 14" },
+    { id: "ch5_6",  label: "Chapters 5 & 6", title: "Sensation & Perception / Learning",              due: "Due Jun 21" },
+    { id: "ch7_8",  label: "Chapters 7 & 8", title: "Memory / Thinking & Language",                   due: "Due Jun 28" },
+    { id: "ch9_10", label: "Chapters 9 & 10","title": "Motivation & Emotion / Developmental Psych",  due: "Due Jul 5" },
+    { id: "ch11_12",label: "Chapters 11 & 12","title": "Personality / Social Psychology",             due: "Due Jul 12" },
+    { id: "ch13_14",label: "Chapters 13 & 14","title": "Psychological Disorders / Treatment",         due: "Due Jul 19" },
+    { id: "final",  label: "Finals Review",  title: "All Chapters",                                   due: "Jul 25" },
+  ];
 
-/* ═══════════════════════════════════════════
-   STATE
-════════════════════════════════════════════ */
-let selected = new Set();
-let deck = [];
-let filteredDeck = [];
-let idx = 0;
-let flipped = false;
-let known = new Set();
-let again = new Set();
-let activeTag = "All";
+// Init Firebase — gracefully handle missing config
+  let db = null;
+  const configured = true;
 
-/* ═══════════════════════════════════════════
-   HOME SCREEN
-════════════════════════════════════════════ */
-function buildHome() {
-  const grid = document.getElementById("chapterGrid");
-  grid.innerHTML = "";
+  if (configured) {
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+  }
+
+  // ── Render chapters ──────────────────────────────────────
+  const container = document.getElementById("chapters-container");
+
   CHAPTERS.forEach(ch => {
-    const div = document.createElement("div");
-    div.className = "chapter-card" + (ch.coming ? " coming-soon" : "") + (selected.has(ch.id) ? " selected" : "");
-    div.innerHTML = `
-      <div class="ch-num">${ch.num}</div>
-      <div class="ch-title">${ch.title}</div>
-      <div class="ch-count">${ch.coming ? "Coming soon" : ch.cards.length + " cards"}</div>
-    `;
-    if (!ch.coming) div.onclick = () => toggleChapter(ch.id, div);
-    grid.appendChild(div);
-  });
-  updateStartBtn();
-}
-
-function toggleChapter(id, el) {
-  if (selected.has(id)) { selected.delete(id); el.classList.remove("selected"); }
-  else { selected.add(id); el.classList.add("selected"); }
-  updateStartBtn();
-}
-
-function selectAll() {
-  CHAPTERS.filter(c => !c.coming).forEach(c => selected.add(c.id));
-  buildHome();
-}
-
-function clearAll() {
-  selected.clear();
-  buildHome();
-}
-
-function updateStartBtn() {
-  const btn = document.getElementById("startBtn");
-  const total = [...selected].reduce((n, id) => {
-    const ch = CHAPTERS.find(c => c.id === id);
-    return n + (ch ? ch.cards.length : 0);
-  }, 0);
-  btn.disabled = total === 0;
-  btn.textContent = total === 0
-    ? "Select at least one chapter"
-    : "Start flashcards (" + total + " cards)";
-}
-
-function startStudy() {
-  const chs = CHAPTERS.filter(c => selected.has(c.id));
-  deck = chs.flatMap(ch => ch.cards.map(card => ({ ...card, chapter: ch.num })));
-  shuffle(deck);
-
-  const isMulti = chs.length > 1;
-  document.getElementById("studyTitle").textContent = isMulti
-    ? chs.map(c => c.num).join(" + ")
-    : chs[0].num + " — " + chs[0].title;
-  document.getElementById("studySubtitle").textContent = deck.length + " cards";
-
-  known.clear(); again.clear();
-  idx = 0; flipped = false; activeTag = "All";
-
-  buildTagFilter(isMulti);
-  applyFilter();
-
-  document.getElementById("homeScreen").style.display = "none";
-  document.getElementById("studyScreen").style.display = "block";
-  document.getElementById("complete").style.display = "none";
-  document.getElementById("cardScene").style.display = "block";
-  document.getElementById("actions").style.display = "none";
-}
-
-function goHome() {
-  document.getElementById("homeScreen").style.display = "block";
-  document.getElementById("studyScreen").style.display = "none";
-  buildHome();
-}
-
-/* ═══════════════════════════════════════════
-   STUDY SCREEN — TAG FILTER
-════════════════════════════════════════════ */
-function buildTagFilter(showChapterFilter) {
-  const row = document.getElementById("filterRow");
-  row.innerHTML = "";
-  const tags = ["All", ...Array.from(new Set(deck.map(c => c.tag)))];
-  if (showChapterFilter) {
-    const chTags = [...selected].map(id => CHAPTERS.find(c => c.id === id).num);
-    tags.push(...chTags);
-  }
-  tags.forEach(t => {
-    const btn = document.createElement("button");
-    btn.className = "chip" + (t === "All" ? " active" : "");
-    btn.textContent = t;
-    btn.onclick = () => {
-      activeTag = t;
-      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      btn.classList.add("active");
-      applyFilter();
-    };
-    row.appendChild(btn);
-  });
-}
-
-function applyFilter() {
-  if (activeTag === "All") {
-    filteredDeck = [...deck];
-  } else if (activeTag.startsWith("Chapter")) {
-    filteredDeck = deck.filter(c => c.chapter === activeTag);
-  } else {
-    filteredDeck = deck.filter(c => c.tag === activeTag);
-  }
-  known.clear(); again.clear();
-  idx = 0; flipped = false;
-  document.getElementById("complete").style.display = "none";
-  document.getElementById("cardScene").style.display = "block";
-  document.getElementById("actions").style.display = "none";
-  render();
-}
-
-/* ═══════════════════════════════════════════
-   STUDY SCREEN — CARD LOGIC
-════════════════════════════════════════════ */
-function render() {
-  if (filteredDeck.length === 0) { showComplete(); return; }
-  if (idx >= filteredDeck.length) { showComplete(); return; }
-  const card = filteredDeck[idx];
-  document.getElementById("navCounter").textContent = (idx + 1) + " / " + filteredDeck.length;
-  document.getElementById("cardTerm").textContent = card.term;
-  document.getElementById("cardDef").textContent = card.def;
-  document.getElementById("cardBadge").textContent = card.tag;
-  document.getElementById("cardChapter").textContent = card.chapter;
-  document.getElementById("cardScene").classList.remove("flipped");
-  document.getElementById("actions").style.display = "none";
-  flipped = false;
-  updateStats();
-}
-
-function flipCard() {
-  if (!flipped) {
-    document.getElementById("cardScene").classList.add("flipped");
-    document.getElementById("actions").style.display = "flex";
-    flipped = true;
-  } else {
-    document.getElementById("cardScene").classList.remove("flipped");
-    flipped = false;
-  }
-}
-
-function markCard(isKnown) {
-  const card = filteredDeck[idx];
-  if (isKnown) { known.add(card.term); again.delete(card.term); }
-  else { again.add(card.term); known.delete(card.term); }
-  idx++;
-  if (idx >= filteredDeck.length) showComplete(); else render();
-}
-
-function nextCard() { if (idx < filteredDeck.length - 1) { idx++; render(); } }
-function prevCard() { if (idx > 0) { idx--; render(); } }
-
-function updateStats() {
-  document.getElementById("statTotal").textContent = filteredDeck.length;
-  document.getElementById("statKnow").textContent = known.size;
-  document.getElementById("statAgain").textContent = again.size;
-  const pct = filteredDeck.length ? Math.round((known.size / filteredDeck.length) * 100) : 0;
-  document.getElementById("progressBar").style.width = pct + "%";
-}
-
-function showComplete() {
-  document.getElementById("cardScene").style.display = "none";
-  document.getElementById("actions").style.display = "none";
-  document.getElementById("complete").style.display = "block";
-  const stillCount = again.size;
-  document.getElementById("completeDetail").textContent =
-    "You marked " + known.size + " of " + filteredDeck.length + " cards as 'know it'."
-    + (stillCount > 0 ? " " + stillCount + " card" + (stillCount !== 1 ? "s" : "") + " still need work." : " Great job!");
-  document.getElementById("studyAgainBtn").style.display = stillCount > 0 ? "inline-block" : "none";
-  updateStats();
-}
-
-function restartDeck() {
-  known.clear(); again.clear(); idx = 0; flipped = false;
-  shuffle(filteredDeck);
-  document.getElementById("complete").style.display = "none";
-  document.getElementById("cardScene").style.display = "block";
-  document.getElementById("actions").style.display = "none";
-  render();
-}
-
-function restartStillLearning() {
-  const stillTerms = new Set(again);
-  filteredDeck = filteredDeck.filter(c => stillTerms.has(c.term));
-  known.clear(); again.clear(); idx = 0; flipped = false;
-  shuffle(filteredDeck);
-  document.getElementById("complete").style.display = "none";
-  document.getElementById("cardScene").style.display = "block";
-  document.getElementById("actions").style.display = "none";
-  render();
-}
-
-/* ═══════════════════════════════════════════
-   UTILS
-════════════════════════════════════════════ */
-function shuffle(arr) {
-  const rnd = new Uint32Array(arr.length);
-  crypto.getRandomValues(rnd);
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = rnd[i] % (i + 1);
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-}
-
-/* ═══════════════════════════════════════════
-   SUPABASE CONFIG
-════════════════════════════════════════════ */
-const SUPABASE_URL = "https://gkluvggtgbsoouapufym.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrbHV2Z2d0Z2Jzb291YXB1ZnltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NzMwOTAsImV4cCI6MjA5NjM0OTA5MH0.Abb_-qg5on4C5-2IyQAJAdOkDZMD5kjwzllnVQwd75M";
-
-async function sbFetch(path, options = {}) {
-  const res = await fetch(SUPABASE_URL + "/rest/v1/" + path, {
-    headers: {
-      "apikey": SUPABASE_KEY,
-      "Authorization": "Bearer " + SUPABASE_KEY,
-      "Content-Type": "application/json",
-      "Prefer": options.prefer || "",
-    },
-    ...options,
-  });
-  if (!res.ok) { const err = await res.text(); throw new Error(err); }
-  const text = await res.text();
-  return text ? JSON.parse(text) : null;
-}
-
-/* ═══════════════════════════════════════════
-   CUSTOM CARDS — Supabase persistence
-════════════════════════════════════════════ */
-async function loadCustomCards() {
-  try {
-    const rows = await sbFetch("custom_cards_psyc?select=*&order=created_at.asc");
-    rows.forEach(row => {
-      const ch = CHAPTERS.find(c => c.id === row.chapter_id);
-      if (ch) ch.cards.push({ term: row.term, def: row.def, tag: row.tag, custom: true, dbId: row.id });
-    });
-  } catch(e) { console.error("Failed to load custom cards:", e); }
-}
-
-async function deleteCustomCard(dbId, chId, term) {
-  try {
-    await sbFetch("custom_cards_psyc?id=eq." + dbId, { method: "DELETE" });
-    const ch = CHAPTERS.find(c => c.id === chId);
-    if (ch) ch.cards = ch.cards.filter(c => c.dbId !== dbId);
-    buildHome();
-  } catch(e) { alert("Couldn't delete card: " + e.message); }
-}
-
-function openCreateModal() {
-  const sel = document.getElementById("createChapter");
-  sel.innerHTML = CHAPTERS.filter(c => !c.coming).map(c =>
-    `<option value="${c.id}">${c.num} — ${c.title}</option>`
-  ).join("");
-  document.getElementById("createTerm").value = "";
-  document.getElementById("createDef").value = "";
-  document.getElementById("createTag").value = "";
-  document.getElementById("createError").style.display = "none";
-  document.getElementById("createModal").style.display = "flex";
-}
-
-function closeCreateModal() {
-  document.getElementById("createModal").style.display = "none";
-}
-
-async function saveNewCard() {
-  const chId = document.getElementById("createChapter").value;
-  const term = document.getElementById("createTerm").value.trim();
-  const def  = document.getElementById("createDef").value.trim();
-  const tag  = document.getElementById("createTag").value.trim() || "Custom";
-  const errEl = document.getElementById("createError");
-  const saveBtn = document.querySelector("#createModal button[onclick='saveNewCard()']");
-  if (!term || !def) {
-    errEl.textContent = "Please fill in both the term and definition.";
-    errEl.style.display = "block";
-    return;
-  }
-  errEl.style.display = "none";
-  saveBtn.textContent = "Saving…";
-  saveBtn.disabled = true;
-  try {
-    const rows = await sbFetch("custom_cards_psyc", {
-      method: "POST",
-      prefer: "return=representation",
-      body: JSON.stringify({ chapter_id: chId, term, def, tag }),
-    });
-    const saved = rows[0];
-    const ch = CHAPTERS.find(c => c.id === chId);
-    if (ch) ch.cards.push({ term, def, tag, custom: true, dbId: saved.id });
-    closeCreateModal();
-    buildHome();
-  } catch(e) {
-    errEl.textContent = "Error saving: " + e.message;
-    errEl.style.display = "block";
-  } finally {
-    saveBtn.textContent = "Add card";
-    saveBtn.disabled = false;
-  }
-}
-
-document.getElementById("createModal").addEventListener("click", function(e) {
-  if (e.target === this) closeCreateModal();
-});
-
-/* ═══════════════════════════════════════════
-   CUSTOM CARDS LIST (home screen)
-════════════════════════════════════════════ */
-function buildCustomList() {
-  const container = document.getElementById("customCardsList");
-  const allCustom = CHAPTERS.flatMap(ch =>
-    ch.cards.filter(c => c.custom).map(c => ({ ...c, chId: ch.id, chNum: ch.num }))
-  );
-  if (!allCustom.length) {
-    container.innerHTML = "";
-    document.getElementById("customCardsSection").style.display = "none";
-    return;
-  }
-  document.getElementById("customCardsSection").style.display = "block";
-  container.innerHTML = allCustom.map(c => `
-    <div style="display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:0.5px solid var(--border);">
-      <div style="flex:1; min-width:0;">
-        <div style="font-size:13px; font-weight:500; color:var(--text);">${escHtml(c.term)}</div>
-        <div style="font-size:12px; color:var(--text2); margin-top:2px; line-height:1.4;">${escHtml(c.def)}</div>
-        <div style="font-size:11px; color:var(--text3); margin-top:3px;">${escHtml(c.chNum)} &middot; ${escHtml(c.tag)}</div>
+    const section = document.createElement("div");
+    section.className = "chapter";
+    section.innerHTML = `
+      <div class="chapter-header" data-id="${ch.id}">
+        <div class="chapter-label">
+          <span class="chapter-tag">${ch.label}</span>
+          <span class="chapter-title">${ch.title}</span>
+        </div>
+        <div class="chapter-meta">
+          <span class="note-count" id="count-${ch.id}">0 notes</span>
+          <span style="font-size:0.8rem;color:var(--muted)">${ch.due}</span>
+          <span class="chevron" id="chev-${ch.id}">▼</span>
+        </div>
       </div>
-      <button onclick="deleteCustomCard('${escHtml(String(c.dbId))}', '${escHtml(c.chId)}', '${escHtml(c.term)}')"
-        style="flex-shrink:0; background:none; border:none; cursor:pointer; color:var(--text3); font-size:16px; padding:2px 4px; line-height:1;"
-        title="Delete card">&times;</button>
-    </div>
-  `).join("");
-}
+      <div class="chapter-body" id="body-${ch.id}">
+        <div class="notes-list" id="notes-${ch.id}">
+          <div class="loading-state">Loading notes…</div>
+        </div>
+        <div class="add-note-form">
+          <div class="form-row">
+            <input type="text" id="name-${ch.id}" placeholder="Your name (optional)" maxlength="40"/>
+          </div>
+          <textarea class="note-input" id="text-${ch.id}" placeholder="Add a study note, mnemonic, key concept, or tip for this chapter…" maxlength="1000"></textarea>
+          <div class="submit-row">
+            <span class="submit-hint">Keep it helpful — no spoilers for quizzes 😄</span>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <span class="post-success" id="success-${ch.id}">✓ Posted!</span>
+              <button class="post-btn" id="btn-${ch.id}" data-chapter="${ch.id}">Post note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(section);
 
-function escHtml(str) {
-  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-}
+    // Toggle open/close
+    section.querySelector(".chapter-header").addEventListener("click", () => {
+      const body = document.getElementById(`body-${ch.id}`);
+      const header = section.querySelector(".chapter-header");
+      const chev = document.getElementById(`chev-${ch.id}`);
+      const isOpen = body.classList.contains("open");
+      body.classList.toggle("open", !isOpen);
+      header.classList.toggle("open", !isOpen);
+      chev.classList.toggle("open", !isOpen);
+      if (!isOpen) loadNotes(ch.id);
+    });
 
-const _origBuildHome = buildHome;
-buildHome = function() { _origBuildHome(); buildCustomList(); };
+    // Post button
+    document.getElementById(`btn-${ch.id}`).addEventListener("click", () => postNote(ch.id));
+  });
 
-/* init */
-loadCustomCards().then(() => buildHome());
+  // ── Load notes from Firestore ────────────────────────────
+  async function loadNotes(chapterId) {
+    const listEl = document.getElementById(`notes-${chapterId}`);
+    const countEl = document.getElementById(`count-${chapterId}`);
+
+    if (!configured) {
+      listEl.innerHTML = `<div class="empty-state">Firebase not set up yet — notes will appear here once configured.</div>`;
+      return;
+    }
+
+    listEl.innerHTML = `<div class="loading-state">Loading…</div>`;
+
+    try {
+      const q = query(
+        collection(db, "notes"),
+        where("chapter", "==", chapterId),
+        orderBy("createdAt", "desc")
+      );
+      const snap = await getDocs(q);
+      const notes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      countEl.textContent = `${notes.length} note${notes.length !== 1 ? "s" : ""}`;
+
+      if (notes.length === 0) {
+        listEl.innerHTML = `<div class="empty-state">No notes yet — be the first to add one!</div>`;
+        return;
+      }
+
+      listEl.innerHTML = "";
+      notes.forEach(n => {
+        const card = document.createElement("div");
+        card.className = "note-card";
+        card.innerHTML = `
+          <div class="note-meta">
+            <span class="note-author">${escHtml(n.author || "Anonymous")}</span>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+              <span class="note-date">${formatDate(n.createdAt)}</span>
+              <button class="delete-btn" data-id="${n.id}" data-chapter="${chapterId}">✕ delete</button>
+            </div>
+          </div>
+          <div class="note-text">${escHtml(n.text)}</div>
+        `;
+        listEl.appendChild(card);
+        card.querySelector(".delete-btn").addEventListener("click", () => deleteNote(n.id, chapterId));
+      });
+
+    } catch (err) {
+      listEl.innerHTML = `<div class="empty-state">Could not load notes. Check your Firebase setup.</div>`;
+      console.error(err);
+    }
+  }
+
+  // ── Post a note ──────────────────────────────────────────
+  async function postNote(chapterId) {
+    const nameEl = document.getElementById(`name-${chapterId}`);
+    const textEl = document.getElementById(`text-${chapterId}`);
+    const btn    = document.getElementById(`btn-${chapterId}`);
+    const ok     = document.getElementById(`success-${chapterId}`);
+
+    const text = textEl.value.trim();
+    if (!text) { textEl.focus(); return; }
+
+    if (!configured) {
+      alert("Firebase is not configured yet. Add your credentials to the firebaseConfig object in the script.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Posting…";
+
+    try {
+      const docRef = await addDoc(collection(db, "notes"), {
+        chapter: chapterId,
+        author: nameEl.value.trim() || "Anonymous",
+        text,
+        createdAt: serverTimestamp()
+      });
+
+textEl.value = "";
+      nameEl.value = "";
+      ok.style.display = "inline-block";
+      setTimeout(() => { ok.style.display = "none"; }, 3000);
+
+      // Reload notes for this chapter
+      await loadNotes(chapterId);
+
+    } catch (err) {
+      alert("Could not post note. Check your Firebase config and Firestore rules.");
+      console.error(err);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "Post note";
+  }
+
+  // ── Delete a note ────────────────────────────────────────
+  async function deleteNote(noteId, chapterId) {
+    if (!confirm("Are you sure you want to delete this note?")) return;
+    if (!confirm("This is permanent and cannot be undone. Delete anyway?")) return;
+    try {
+      const { deleteDoc, doc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      await deleteDoc(doc(db, "notes", noteId));
+await loadNotes(chapterId);
+    } catch (err) {
+      alert("Could not delete note.");
+      console.error(err);
+    }
+  }
+
+  // ── Helpers ──────────────────────────────────────────────
+  function escHtml(str) {
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function formatDate(ts) {
+    if (!ts) return "";
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  }
+
 </script>
-</body>
-</html>
+
