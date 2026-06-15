@@ -6,18 +6,18 @@
 <title>PSYC 101 — Study Hub</title>
 <style>
   :root {
-    --bg: #0f0f1a;
-    --surface: #1a1a2e;
-    --border: #2a2a45;
-    --text: #e8e8f0;
-    --muted: #8888aa;
-    --accent: #3355cc;
-    --accent-light: #1a1f3a;
-    --accent-hover: #4466ee;
-    --tag-bg: #1e2248;
-    --tag-text: #8899ee;
-    --success: #4db87a;
-    --success-bg: #0d2a1a;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --text: #1a1a18;
+    --muted: #6b6a64;
+    --accent: #3d5a99;
+    --accent-light: #eef1f9;
+    --accent-hover: #2e4578;
+    --tag-bg: #e8ecf7;
+    --tag-text: #2e4578;
+    --success: #2d7a4f;
+    --success-bg: #eaf4ef;
     --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --mono: 'Courier New', monospace;
   }
@@ -407,8 +407,8 @@
 
 <header>
   <h1>PSYC 101 — Study Hub</h1>
-  <p>notes, organized by chapter</p>
-  <a class="flashcard-link" href="flashcards.html">↗ Open Flashcard App</a>
+  <p>Shared notes from students, organized by chapter</p>
+  <a class="flashcard-link" href="index.html">↗ Open Flashcard App</a>
 </header>
 
 <main>
@@ -417,10 +417,10 @@
   <div class="visual-aids">
     <div class="section-heading">Visual Aids</div>
     <div class="visual-grid">
-      <a class="visual-card" href="neurotransmitter-map.png" target="_blank">
+      <a class="visual-card" href="neurotransmitter-body-map.html" target="_blank">
         <div class="visual-icon">🧠</div>
         <div class="visual-info">
-          <strong>Neurotransmitter Map</strong>
+          <strong>Neurotransmitter Body Map</strong>
           <span>Where each neurotransmitter acts in the body — Ch. 2</span>
         </div>
       </a>
@@ -429,34 +429,6 @@
         <div class="visual-info">
           <strong>Neuron Structure</strong>
           <span>Dendrites, cell body, axon & myelin sheath — Ch. 2</span>
-        </div>
-      </a>
-      <a class="visual-card" href="nervous-system.png" target="_blank">
-        <div class="visual-icon">🫀</div>
-        <div class="visual-info">
-          <strong>The Nervous System</strong>
-          <span>Central vs. peripheral, autonomic & somatic divisions — Ch. 2</span>
-        </div>
-      </a>
-      <a class="visual-card" href="types-of-neural-measures.png" target="_blank">
-        <div class="visual-icon">📡</div>
-        <div class="visual-info">
-          <strong>Types of Neural Measures</strong>
-          <span>EEG, MEG, PET, MRI & fMRI compared — Ch. 2</span>
-        </div>
-      </a>
-      <a class="visual-card" href="brain-regions-and-structures.png" target="_blank">
-        <div class="visual-icon">🧠</div>
-        <div class="visual-info">
-          <strong>Brain Regions and Structures</strong>
-          <span>Forebrain, midbrain & hindbrain — Ch. 2</span>
-        </div>
-      </a>
-      <a class="visual-card" href="limbic-system.png" target="_blank">
-        <div class="visual-icon">🫀</div>
-        <div class="visual-info">
-          <strong>Limbic System</strong>
-          <span>Amygdala, hippocampus, thalamus & hypothalamus — Ch. 2</span>
         </div>
       </a>
     </div>
@@ -478,7 +450,11 @@
   import { getFirestore, collection, addDoc, query, where, orderBy, getDocs, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-
+  // ─────────────────────────────────────────────────────────
+  // 🔧 STEP 1: Replace this object with your Firebase config.
+  //    Get it from: Firebase Console → Your Project →
+  //    Project Settings → Your Apps → SDK setup → Config
+  // ─────────────────────────────────────────────────────────
   const firebaseConfig = {
     apiKey: "AIzaSyCGlhtk6i6G2l02iC1qwCBGQ3plKGEI72U",
     authDomain: "psyc-study-hub.firebaseapp.com",
@@ -686,3 +662,18 @@ await loadNotes(chapterId);
 
 </script>
 
+<!--
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔧 FIREBASE SETUP — 5 MINUTE GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to https://console.firebase.google.com
+2. Click "Add project" → name it (e.g. psyc101-study-hub) → Continue
+3. Disable Google Analytics if you don't need it → Create project
+4. In the left sidebar: Build → Firestore Database → Create database
+   · Choose "Start in test mode" (allows reads/writes for 30 days — fine for class)
+   · Pick any location → Enable
+5. In the left sidebar: Project Overview ⚙️ → Project settings
+   · Scroll to "Your apps" → click </> (Web app icon)
+   · Register app (any nickname) → copy the firebaseConfig object
+6. Paste it into the firebaseConfig variable in the <script> above
