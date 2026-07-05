@@ -1,151 +1,94 @@
-# Chapter 6 — Learning
-## PSYC 101 Study Guide
+# Chapter 6: Learning — Study Guide
 
 ---
 
-## How We Learn
+## How Do We Learn?
 
-**Q: What is the definition of learning in psychology?**
-A: Learning is the process of acquiring, through experience, new and relatively enduring information or behaviors. Note the distinction: learning *acquires* information; memory *retains* it.
+**Q: What is learning, and what are its two main forms discussed in this chapter?**
+A: Learning is the acquisition of new and relatively enduring information or behaviors through experience. Associative learning involves learning that certain events occur together — either two stimuli (classical conditioning) or a response and its consequence (operant conditioning).
 
-**Q: What is associative learning, and what are its two main forms?**
-A: Associative learning is learning that certain events occur together — by linking two things. The two forms are:
-- **Classical conditioning** — linking two stimuli (events we don't control)
-- **Operant conditioning** — linking a behavior to its consequence
-
-**Q: Besides conditioning, what is another major type of learning?**
-A: Cognitive learning — acquiring mental information through observation, language, or insight, without necessarily being directly rewarded. Observational learning is one form.
+**Q: What's the basic difference between classical and operant conditioning?**
+A: Classical conditioning: we learn associations between events we do not control, producing involuntary (respondent) behavior. Operant conditioning: we learn associations between our own behavior and its consequences, producing voluntary (operant) behavior.
 
 ---
 
 ## Classical Conditioning
 
-**Q: What is classical conditioning and who discovered it?**
-A: Classical conditioning is learning to associate two stimuli so that one predicts the other. It was discovered by Russian physiologist **Ivan Pavlov** while studying dogs' digestion. The process involves involuntary, automatic (respondent) behaviors.
+**Q: What are the key building-block terms of classical conditioning?**
+A: Neutral stimulus (NS) — evokes no response before conditioning. Unconditioned stimulus (US) — naturally and automatically triggers a response. Unconditioned response (UR) — the unlearned, automatic response to the US. Conditioned stimulus (CS) — the previously neutral stimulus that, after pairing with the US, triggers a response. Conditioned response (CR) — the learned response to the CS.
 
-**Q: Define the four key terms in Pavlov's model.**
-A:
-- **US (Unconditioned Stimulus)** — naturally and automatically triggers a response (e.g., food)
-- **UR (Unconditioned Response)** — the natural, unlearned response to the US (e.g., salivation to food)
-- **CS (Conditioned Stimulus)** — originally neutral; after pairing with the US, it triggers a learned response (e.g., a tone)
-- **CR (Conditioned Response)** — the learned response to the CS (e.g., salivating to the tone)
+**Q: What are the five major classical conditioning processes?**
+A: Acquisition — initially linking the NS and US so the NS becomes a CS. Extinction — weakening of the CR when the US no longer follows the CS. Spontaneous recovery — the reappearance, after a pause, of a weakened CR. Generalization — responding similarly to stimuli that resemble the CS. Discrimination — learning to distinguish the CS from similar stimuli that don't signal the US.
 
-Memory trick: **Conditioned = learned; unconditioned = unlearned.**
-
-**Q: What are the five major processes Pavlov studied?**
-A:
-1. **Acquisition** — the initial learning; pairing the NS with the US until the NS becomes a CS
-2. **Extinction** — the CR weakens when the CS is repeatedly presented without the US
-3. **Spontaneous recovery** — the extinguished CR reappears after a rest period (shows it was suppressed, not erased)
-4. **Generalization** — responding to stimuli *similar* to the CS (adaptive, but can produce irrational fears)
-5. **Discrimination** — learning to respond to the CS but not to other similar stimuli
-
-**Q: Give a real-life example of classical conditioning in humans.**
-A: Patients undergoing chemotherapy may develop conditioned nausea to the sights and smells of the clinic — neutral stimuli that were repeatedly paired with the drug-induced nausea (US/UR). Drug cravings work the same way: the context where someone used a drug becomes a CS that triggers craving.
-
-**Q: What is taste aversion, and why does it challenge early behaviorism?**
-A: Taste aversion is a classically conditioned avoidance of a food associated with illness, even when the illness occurs hours later. Garcia & Koelling's research showed that rats avoid *tastes* — not sights or sounds — linked with sickness. This revealed that **biology constrains conditioning**: organisms are prepared to learn some associations (adaptive ones) more easily than others. This disproved the idea that any stimulus could serve equally as a conditioned stimulus.
+**Q: What is Pavlov's legacy?**
+A: He demonstrated that learning could be studied objectively, showed classical conditioning is a basic form of learning across species, and modern neuroscience has since identified the neural circuits linking a conditioned warning signal (CS) to an upcoming threat (US). His principles now inform understanding of drug and food cravings and some medical treatments.
 
 ---
 
 ## Operant Conditioning
 
-**Q: How does operant conditioning differ from classical conditioning?**
-A: In classical conditioning, we associate two events we don't control, and responses are automatic. In operant conditioning, we associate our *own actions* with their consequences — behavior that operates on the environment (operant behavior) is voluntary. We repeat behaviors followed by rewards and avoid behaviors followed by punishers.
+**Q: What is the law of effect, and whose idea was it?**
+A: Thorndike's principle that rewarded behavior is likely to be repeated. It became the foundation for Skinner's operant conditioning research, which he studied using the operant chamber (Skinner box).
 
-**Q: What is Thorndike's law of effect?**
-A: Rewarded behaviors tend to be repeated; punished behaviors tend to diminish. This was the foundation on which Skinner built operant conditioning.
+**Q: What is shaping?**
+A: A procedure where reinforcers are used to gradually guide behavior closer and closer to a desired target behavior, rewarding successive approximations while ignoring other responses.
 
-**Q: What is shaping, and how does it work?**
-A: Shaping is reinforcing *successive approximations* of a desired behavior — rewarding behaviors that inch closer and closer to the target. It's how Skinner taught pigeons to play table tennis and how animal trainers teach complex behaviors.
+**Q: What's the difference between positive and negative reinforcement?**
+A: Positive reinforcement adds a desirable stimulus to increase a behavior (e.g., petting a dog that comes when called). Negative reinforcement removes an aversive stimulus to increase a behavior (e.g., taking a painkiller to end pain). Importantly, negative reinforcement is not punishment — it strengthens behavior, it doesn't suppress it.
 
-**Q: What is the difference between positive and negative reinforcement? (The most commonly confused concept in the chapter.)**
-A:
-- **Positive reinforcement** — *adds* a desirable stimulus to increase behavior (e.g., praise, a treat)
-- **Negative reinforcement** — *removes* an aversive stimulus to increase behavior (e.g., taking aspirin removes a headache, reinforcing the behavior of taking aspirin)
+**Q: What's the difference between primary and conditioned reinforcers?**
+A: Primary reinforcers are unlearned and innate, typically satisfying a biological need directly (like food). Conditioned (secondary) reinforcers gain their reinforcing power through learned association with primary reinforcers (like money).
 
-**Critical point:** Negative reinforcement is NOT punishment. Both positive and negative reinforcement *increase* behavior. The "negative" refers to removing something unpleasant, not to something bad.
+**Q: How do continuous and partial reinforcement schedules differ?**
+A: Continuous reinforcement (rewarding every occurrence) produces rapid learning but also rapid extinction. Partial (intermittent) reinforcement produces slower acquisition but much greater resistance to extinction.
 
-**Q: What is the difference between primary and conditioned (secondary) reinforcers?**
-A:
-- **Primary reinforcers** — innately satisfying; no learning needed (food, water, pain relief)
-- **Conditioned reinforcers** — gain power through learned association with primary reinforcers (money, grades, likes, praise)
+**Q: What are the four partial reinforcement schedules, with examples?**
+A: Fixed-ratio — reinforcement after a set number of responses (buy 10 coffees, get one free). Variable-ratio — reinforcement after an unpredictable number of responses (slot machines) — this schedule produces the highest, most persistent response rates. Fixed-interval — reinforcement for the first response after a set time period (Tuesday discount prices). Variable-interval — reinforcement for the first response after an unpredictable time period (checking social media for updates).
 
-**Q: Describe the four schedules of partial reinforcement and their effects on behavior.**
-A:
+**Q: What's the difference between positive and negative punishment?**
+A: Positive punishment administers an aversive stimulus to decrease a behavior (a traffic ticket for speeding). Negative punishment withdraws a rewarding stimulus to decrease a behavior (taking away driving privileges).
 
-| Schedule | Rule | Effect |
-|---|---|---|
-| Fixed-ratio | Reinforce after every *n*th response | High, steady rate; brief pause after reward |
-| Variable-ratio | Reinforce after unpredictable number of responses | Highest rate; most resistant to extinction (e.g., slot machines) |
-| Fixed-interval | Reinforce first response after a fixed time | Choppy pattern; responding increases as time approaches |
-| Variable-interval | Reinforce first response after unpredictable time | Slow, steady responding (e.g., checking for a text) |
+**Q: What are the major drawbacks of physical punishment?**
+A: Punished behavior is suppressed, not forgotten or replaced, which can (negatively) reinforce the punisher's own behavior. It teaches discrimination between situations rather than teaching the desired behavior, can instill fear, and may model aggression as a way to cope with problems. Research (Cuartas, 2021) links physical punishment, like spanking, to worse outcomes for children.
 
-Key rule: **Ratio schedules** produce higher response rates than interval schedules. **Variable schedules** produce more consistent responding than fixed schedules.
-
-**Q: What is punishment, and what are its two types?**
-A: Punishment is any consequence that *decreases* the behavior it follows.
-- **Positive punishment** — adds an unpleasant stimulus (e.g., a fine, a reprimand)
-- **Negative punishment** — removes a rewarding stimulus (e.g., taking away screen time)
-
-**Q: What are five reasons psychologists discourage physical punishment?**
-A:
-1. Punished behavior is *suppressed, not forgotten* — it returns when the punisher is absent
-2. It does not replace unwanted behavior with a better alternative
-3. It teaches *discrimination* — the child learns not to misbehave when the parent is watching
-4. It can produce *fear* that generalizes to the person or place associated with punishment
-5. It may model aggression as a way to solve problems — physically punished children show higher aggression
+**Q: What's a research-supported alternative to physical punishment?**
+A: Time-out — a form of negative punishment that removes a misbehaving child from access to reinforcing stimuli, like attention from parents or siblings, ideally paired with clear expectations for an alternative positive behavior.
 
 ---
 
 ## Biology, Cognition, and Learning
 
-**Q: How does biology constrain classical conditioning?**
-A: Evolution prepares organisms to more easily learn associations that aid survival. Garcia & Koelling showed that rats learn taste aversions (taste → illness) readily, but not sound/sight aversions — because taste is the naturally adaptive cue for detecting tainted food. Each species has biological predispositions that define what it can and can't easily learn.
+**Q: What did Garcia and Koelling's taste-aversion research demonstrate?**
+A: That biology constrains conditioning — animals are biologically predisposed to more easily learn associations that are naturally adaptive (like linking taste with illness) and resist associations that aren't, disproving the earlier belief that any stimulus could serve equally well as a CS.
 
-**Q: How does biology constrain operant conditioning?**
-A: Animals most easily learn and retain behaviors that reflect their biological predispositions. A hamster readily learns to dig for food (natural behavior) but resists learning unnatural food-linked behaviors. Pigeons can learn to flap wings to avoid shock (natural fleeing) but struggle to peck to avoid shock (pecking is not a natural escape behavior).
+**Q: What is a cognitive map, and what does latent learning show?**
+A: A cognitive map is a mental representation of one's environment. Rats that explored a maze without any food reward still developed a cognitive map, and demonstrated latent learning — learning that had occurred but wasn't demonstrated until a reward gave them a reason to show it — evidence that cognition plays a role in learning even without reinforcement.
 
-**Q: What is a cognitive map, and what does it reveal about learning?**
-A: A cognitive map is a mental representation of one's environment. Tolman showed that rats exploring a maze without reward still developed cognitive maps — and when food was later placed in the goal box, they ran the maze as quickly as always-rewarded rats. This demonstrates **latent learning**: learning that occurs without reinforcement but becomes evident when motivation exists.
-
-**Q: How does cognition affect classical conditioning?**
-A: Animals learn an *expectancy* — an awareness of how likely the US is to follow the CS. The CS that is the best predictor of the US produces the strongest CR. In humans, awareness that a drug (not the alcohol) causes nausea weakens conditioned aversion treatment for alcohol use disorder — the thought matters, not just the pairing.
+**Q: How can excessive rewards backfire?**
+A: Excessive extrinsic rewards (external rewards, like money) can undermine intrinsic motivation (the internal desire to do something for its own sake) — sometimes called the overjustification effect.
 
 ---
 
-## Observational Learning
+## Learning by Observation
 
-**Q: What is observational learning (social learning)?**
-A: Learning by watching and imitating others (modeling). We learn behaviors, fears, and emotional reactions by observing others and the consequences they experience — called vicarious reinforcement or vicarious punishment.
+**Q: What is observational learning, and what role does modeling play?**
+A: Learning by watching and imitating others (also called social learning). Modeling is the process of observing and imitating a specific behavior; vicarious reinforcement or punishment lets us anticipate the consequences of a behavior by observing what happens to someone else who does it.
 
-**Q: What did Bandura's Bobo doll experiment demonstrate?**
-A: Children who watched an adult aggressively beat a Bobo doll later imitated those specific acts — even using the same words. This showed that:
-- Observation alone (without direct reinforcement) can produce new behaviors
-- Observing aggressive models can lower inhibitions and teach aggressive behaviors
+**Q: What are mirror neurons, and what's their proposed role?**
+A: Neurons that fire both when performing an action and when observing someone else perform that same action. Some researchers propose they provide a neural basis for imitation and observational learning, though this is debated.
 
-**Q: What are mirror neurons, and what role might they play in learning?**
-A: Neurons in the frontal lobe proposed to fire both when performing an action and when observing someone else perform the same action. Discovered accidentally in a Parma, Italy lab in 1991, they may provide a neural basis for imitation and observational learning. (Note: the existence and role of mirror neurons is still debated in the field.)
+**Q: What is the Bobo doll experiment, and what did it show?**
+A: Albert Bandura's classic study in which children who watched an adult aggressively attack an inflatable Bobo doll later imitated those specific aggressive acts themselves — demonstrating that aggression, like other behaviors, can be learned through observation.
 
-**Q: What are the prosocial and antisocial effects of modeling?**
-A:
-- **Prosocial** — viewing helpful behavior increases helping in observers; real-world models of nonviolent action (Gandhi, MLK) show modeling can drive social change; parents who model moral behavior tend to raise morally engaged children
-- **Antisocial** — abusive parents tend to have aggressive children; exposure to hate speech desensitizes; media violence research suggests repeated viewing of unpunished violence increases aggression and desensitization
+**Q: What are prosocial and antisocial modeling?**
+A: Prosocial modeling: observing helpful, positive behavior (e.g., from parents or public figures) increases similar helpful behavior in observers, especially when the model's words and actions are consistent. Antisocial modeling: observing aggressive or harmful behavior (including through media) can increase similar behavior in observers.
 
 ---
 
-## Classical vs. Operant Conditioning — Side-by-Side
+## Quick Connects
 
-| | Classical | Operant |
-|---|---|---|
-| **Basic idea** | Linking two stimuli we don't control | Linking our behavior to its consequences |
-| **Response type** | Involuntary (respondent) | Voluntary (operant) |
-| **Key figure** | Pavlov | Skinner |
-| **Acquisition** | Pairing NS with US | Reinforcing a response |
-| **Extinction** | CS presented alone repeatedly | Reinforcement withheld |
-| **Generalization** | Responding to stimuli similar to CS | Responses in similar situations |
-| **Discrimination** | Responding to CS, not to other stimuli | Learning only some responses are reinforced |
+**Q: How do classical and operant conditioning combine in a single real-world behavior, like a drug craving?**
+A: Classical conditioning can link drug-related cues (like a location or a person) to physiological cravings (CS–CR), while operant conditioning reinforces continued drug-seeking behavior when it's followed by relief from withdrawal (negative reinforcement).
 
----
-
-*PSYC 101 · Summer 2026*
+**Q: How does latent learning challenge a strict behaviorist (Skinner-style) view of learning?**
+A: Latent learning shows that learning can happen without any reinforcement at all — the rats' cognitive maps formed before any reward was introduced — suggesting cognitive processes matter even in a paradigm (operant conditioning) that Skinner argued didn't require them.
