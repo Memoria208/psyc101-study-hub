@@ -1551,6 +1551,10 @@ const _origBuildHome = buildHome;
 buildHome = function() { _origBuildHome(); buildCustomList(); };
 
 /* init */
+// Render immediately with the built-in cards (no network wait needed for these).
+buildHome();
+// Then fetch any custom cards from Supabase in the background and quietly
+// re-render once they arrive, instead of blocking the whole page on it.
 loadCustomCards().then(() => buildHome());
 </script>
 </body>
