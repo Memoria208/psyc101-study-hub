@@ -1261,8 +1261,195 @@ const CHAPTERS = [
       { term: "Collectivism", def: "Giving priority to the goals of one's group (often extended family or work group), and defining one's identity accordingly.", tag: "Culture & Self" },
     ]
   },
-  { id: "ch13", num: "Chapter 13", title: "Psychological Disorders", cards: [], coming: true },
-  { id: "ch14", num: "Chapter 14", title: "Therapy", cards: [], coming: true },
+  {
+    id: "ch13",
+    num: "Chapter 13",
+    title: "Psychological Disorders",
+    cards: [
+      // ── Defining & Understanding Disorders ──
+      { term: "Psychological disorder", def: "A collection of symptoms marked by a clinically significant disruption to a person's thoughts, emotions, or behaviors that causes distress or suffering.", tag: "Definitions" },
+      { term: "Dysfunctional / maladaptive", def: "Thoughts, emotions, or behaviors are considered dysfunctional or maladaptive when they interfere with normal day-to-day life — the key sign that something has crossed from unusual into a disorder.", tag: "Definitions" },
+      { term: "Medical model", def: "The concept that psychological disorders have physical causes that can be diagnosed, treated, and in most cases cured, often through treatment in a hospital.", tag: "Understanding Disorders" },
+      { term: "Biopsychosocial approach (to disorders)", def: "The view that psychological disorders arise from the interaction of biological, psychological, and social-cultural factors; gave rise to the vulnerability-stress (diathesis-stress) model.", tag: "Understanding Disorders" },
+      { term: "Vulnerability-stress model", def: "The idea that individual biological, psychological, or social-cultural dispositions (vulnerabilities) combine with life stressors to trigger a psychological disorder.", tag: "Understanding Disorders" },
+      { term: "Comorbidity", def: "The co-occurrence of two or more disorders in the same person, such as major depressive disorder appearing alongside an anxiety disorder; often results from overlapping genetic risk.", tag: "Understanding Disorders" },
+      { term: "DSM-5-TR", def: "The American Psychiatric Association's Diagnostic and Statistical Manual of Mental Disorders (Text Revision of the 5th edition, 2022); the most widely used tool for defining and classifying psychological disorders.", tag: "Classification" },
+      { term: "Diagnostic labels: benefits and risks", def: "Labels help clinicians communicate, guide treatment, and research causes, and can relieve clients by naming their suffering — but they also risk stigma and biased judgments (e.g., of dangerousness).", tag: "Classification" },
+      { term: "Prolonged grief disorder", def: "A DSM-5-TR diagnosis for bereavement-related grief that lasts more than a year (6 months for children/adolescents) and disrupts daily life — added in response to concern that ordinary grief was being over-pathologized.", tag: "Classification" },
+      { term: "Research Domain Criteria (RDoC)", def: "A National Institute of Mental Health classification project that organizes psychological disorders according to observable behaviors and brain activity rather than symptom checklists alone.", tag: "Classification" },
+
+      // ── Anxiety-Related Disorders ──
+      { term: "Anxiety disorders", def: "Psychological disorders marked by distressing, persistent anxiety or by maladaptive behaviors that reduce anxiety.", tag: "Anxiety Disorders" },
+      { term: "Generalized anxiety disorder", def: "A disorder in which a person is, for no obvious reason, continually tense, apprehensive, and in a state of autonomic nervous system arousal; worry persists for six months or more.", tag: "Anxiety Disorders" },
+      { term: "Panic disorder", def: "A disorder marked by unpredictable, minutes-long episodes of intense dread (panic attacks) in which a person experiences terror along with chest pain, choking, or other frightening sensations, followed by fear of future attacks.", tag: "Anxiety Disorders" },
+      { term: "Panic attack", def: "A minutes-long episode of intense fear that something horrible is about to happen, often accompanied by chest pain, choking, trembling, dizziness, or a racing heart.", tag: "Anxiety Disorders" },
+      { term: "Agoraphobia", def: "Fear or avoidance of public situations from which escape might be difficult, often developing after repeated panic attacks.", tag: "Anxiety Disorders" },
+      { term: "Specific phobia", def: "A disorder marked by a persistent, irrational fear and avoidance of a specific object, activity, or situation (e.g., animals, heights, blood, enclosed spaces).", tag: "Anxiety Disorders" },
+      { term: "Social anxiety disorder", def: "Intense fear of social settings where one might be judged by others, such as parties, presentations, or eating in public; can lead to avoidance of social contact.", tag: "Anxiety Disorders" },
+      { term: "Obsessive-compulsive disorder (OCD)", def: "A disorder characterized by unwanted, intrusive, and persistent thoughts (obsessions) and/or actions (compulsions) that a person feels driven to perform, crossing into disorder when they interfere with daily functioning.", tag: "OCD & Related" },
+      { term: "Hoarding disorder", def: "An OCD-related disorder marked by cluttering one's living space with acquired possessions the person cannot part with.", tag: "OCD & Related" },
+      { term: "Body dysmorphic disorder", def: "An OCD-related disorder involving preoccupation with perceived defects in one's appearance, often with repeated mirror-checking.", tag: "OCD & Related" },
+      { term: "Posttraumatic stress disorder (PTSD)", def: "A disorder characterized by recurring vivid, distressing memories, nightmares, social withdrawal, jumpy anxiety, and trouble sleeping for four or more weeks after a traumatic experience.", tag: "PTSD" },
+      { term: "Somatic symptom disorder", def: "A disorder in which a person experiences genuine physical symptoms with significant distress and impaired functioning, without a clear physical cause; formerly called somatoform disorder.", tag: "Somatic Symptom" },
+      { term: "Illness anxiety disorder", def: "A disorder in which a person interprets normal physical sensations as symptoms of a dreaded disease, resisting reassurance from physicians; previously called hypochondriasis.", tag: "Somatic Symptom" },
+      { term: "Stimulus generalization (fear)", def: "A learning process in which a person who has experienced a fear-provoking event develops fear of similar events or stimuli — one route by which anxiety disorders and phobias form.", tag: "Understanding Anxiety" },
+      { term: "Fear learning by observation", def: "Learning to fear something by watching others react fearfully to it, rather than through direct personal experience — demonstrated in wild-reared monkeys' fear of snakes.", tag: "Understanding Anxiety" },
+
+      // ── Substance Use Disorders ──
+      { term: "Psychoactive drug", def: "A chemical substance that alters perceptions, mood, thoughts, and behaviors, typically by acting at the brain's synapses.", tag: "Substance Use" },
+      { term: "Substance use disorder", def: "A disorder diagnosed when continued use of a substance produces tolerance, withdrawal symptoms, and continued cravings and use despite significant life disruption; severity ranges from mild to severe based on number of indicators present.", tag: "Substance Use" },
+      { term: "Tolerance", def: "The diminishing effect with regular use of the same dose of a drug, requiring the user to take larger and larger doses to experience the drug's effect.", tag: "Substance Use" },
+      { term: "Withdrawal", def: "The unpleasant mental or physical symptoms (such as intense cravings) that follow discontinuing use of an addictive drug or behavior.", tag: "Substance Use" },
+      { term: "Substance/medication-induced disorder", def: "A DSM-5-TR category for cognitive, emotional, and behavioral changes caused by drug or medication use that resemble a psychological disorder (e.g., substance-induced anxiety or psychotic disorder).", tag: "Substance Use" },
+      { term: "Depressants", def: "Drugs, such as alcohol, barbiturates, and opioids, that calm neural activity and slow body functions.", tag: "Depressants" },
+      { term: "Alcohol use disorder", def: "A disorder marked by increased tolerance to alcohol, withdrawal symptoms when use stops, and a drive to continue drinking despite significant life problems; commonly called alcoholism.", tag: "Depressants" },
+      { term: "Barbiturates", def: "Tranquilizing drugs (e.g., Nembutal, Seconal, Amytal) that depress central nervous system activity; can impair memory and judgment and, combined with alcohol, can be fatal.", tag: "Depressants" },
+      { term: "Opioids", def: "Opium and its derivatives (heroin, methadone, codeine, OxyContin, morphine, fentanyl) that depress neural activity, temporarily easing pain and anxiety; the brain reduces its own endorphin production with repeated use, producing severe withdrawal.", tag: "Depressants" },
+      { term: "Stimulants", def: "Drugs (caffeine, nicotine, cocaine, amphetamines, methamphetamine, Ecstasy) that excite neural activity and speed up body functions, raising energy and mood while reducing appetite.", tag: "Stimulants" },
+      { term: "Nicotine", def: "One of the most addictive stimulants, found in tobacco products; reaches the brain within about 7 seconds and triggers release of neurotransmitters that boost alertness while calming anxiety.", tag: "Stimulants" },
+      { term: "Cocaine", def: "A powerful, addictive stimulant derived from the coca plant that produces a rush of euphoria by elevating dopamine, serotonin, and norepinephrine, followed by a crash of agitated depression.", tag: "Stimulants" },
+      { term: "Methamphetamine", def: "A highly addictive stimulant, chemically similar to amphetamines, that triggers dopamine release, producing hours of heightened energy and mood followed by irritability, insomnia, and possible violent outbursts.", tag: "Stimulants" },
+      { term: "Ecstasy (MDMA)", def: "A stimulant and mild hallucinogen that triggers dopamine release and floods the brain with serotonin, producing emotional elevation and social connectedness but risking dehydration, overheating, and long-term serotonin depletion.", tag: "Stimulants" },
+      { term: "Hallucinogens", def: "Psychedelic drugs that distort perceptions and evoke sensory images in the absence of sensory input (e.g., LSD, psilocybin, marijuana in mild form).", tag: "Hallucinogens" },
+      { term: "LSD", def: "Lysergic acid diethylamide; a powerful synthetic hallucinogen that interferes with the serotonin neurotransmitter system, producing vivid and unpredictable perceptual distortions.", tag: "Hallucinogens" },
+      { term: "THC", def: "Delta-9-tetrahydrocannabinol; the active ingredient in marijuana, which produces a mix of mild hallucinogenic, relaxing, and disinhibiting effects and lingers in the body for more than a week.", tag: "Hallucinogens" },
+      { term: "Near-death experience", def: "An altered state of consciousness reported by many people revived from cardiac arrest, involving visions of tunnels, bright lights, and out-of-body sensations — strikingly similar to hallucinogenic drug experiences.", tag: "Hallucinogens" },
+
+      // ── Depressive & Bipolar Disorders ──
+      { term: "Major depressive disorder", def: "A disorder in which a person experiences, in the absence of drugs or a medical condition, at least five of nine specified symptoms (including depressed mood or loss of interest) for two or more weeks.", tag: "Depression" },
+      { term: "Persistent depressive disorder", def: "A depressive disorder in which milder symptoms of depression last for a much longer period of time than in major depressive disorder.", tag: "Depression" },
+      { term: "Rumination", def: "Compulsive fretting, overthinking, or brooding on a problem, especially about the self; can distract from problem-solving, increase negative emotion, and feed depression.", tag: "Depression" },
+      { term: "Explanatory style", def: "The characteristic way a person explains good and bad events to themselves — whether attributions are stable/unstable, global/specific, and internal/external — which shapes vulnerability to depression.", tag: "Depression" },
+      { term: "Learned helplessness", def: "The hopelessness and passive resignation an animal or person learns when unable to avoid repeated aversive events; contributes to depression's sense of hopelessness.", tag: "Depression" },
+      { term: "State-dependent memory", def: "The tendency to recall experiences that fit one's current mood state, helping explain why a depressed mood can trigger a cascade of pessimistic memories and explanations.", tag: "Depression" },
+      { term: "Bipolar disorders", def: "Mood disorders in which a person experiences periods of extremely excited mood and increased energy (mania) that can last several days or more, often alternating with periods of depression.", tag: "Bipolar Disorders" },
+      { term: "Mania", def: "A euphoric, talkative, highly energetic, and overly ambitious state lasting a week or longer, characteristic of bipolar I disorder; involves poor judgment and reduced need for sleep.", tag: "Bipolar Disorders" },
+      { term: "Bipolar I disorder", def: "The most severe form of bipolar disorder, marked by full manic episodes that may alternate with periods of depression.", tag: "Bipolar Disorders" },
+      { term: "Bipolar II disorder", def: "A bipolar disorder in which a person experiences depression alternating with a milder form of mania called hypomania.", tag: "Bipolar Disorders" },
+      { term: "Heritability (of depression)", def: "The extent to which individual differences in depression risk are attributable to genetic variation, estimated at roughly 40% for major depressive disorder based on twin studies.", tag: "Depression" },
+
+      // ── Schizophrenia ──
+      { term: "Schizophrenia", def: "A psychotic disorder in which a person's mind has split from reality, resulting in disturbed perceptions and beliefs, disorganized speech, and diminished or inappropriate emotions and actions.", tag: "Schizophrenia" },
+      { term: "Psychotic disorder", def: "A psychological disorder in which a person loses contact with reality, experiencing irrational ideas and distorted perceptions; schizophrenia is the chief example.", tag: "Schizophrenia" },
+      { term: "Positive symptoms (schizophrenia)", def: "Symptoms of schizophrenia in which inappropriate behaviors are present, such as hallucinations, disorganized speech, and inappropriate laughter, tears, or rage.", tag: "Schizophrenia" },
+      { term: "Negative symptoms (schizophrenia)", def: "Symptoms of schizophrenia in which appropriate behaviors are absent, such as flat affect, expressionless faces, or toneless voices.", tag: "Schizophrenia" },
+      { term: "Hallucinations", def: "False sensory experiences, such as seeing or hearing something in the absence of an external stimulus; in schizophrenia, most often auditory (hearing voices).", tag: "Schizophrenia" },
+      { term: "Delusions", def: "False beliefs, often of persecution or grandeur, that may accompany psychotic disorders such as schizophrenia.", tag: "Schizophrenia" },
+      { term: "Word salad", def: "Disorganized, incoherent speech that jumbles ideas together with no logical order, sometimes seen in schizophrenia.", tag: "Schizophrenia" },
+      { term: "Flat affect", def: "A negative symptom of schizophrenia marked by an emotionless state showing no apparent feeling, expressed through a toneless voice or expressionless face.", tag: "Schizophrenia" },
+      { term: "Chronic schizophrenia", def: "A slow-developing (process) form of schizophrenia, often emerging from a long history of social difficulty, for which recovery is doubtful; tends to feature more negative symptoms.", tag: "Schizophrenia" },
+      { term: "Acute schizophrenia", def: "A form of schizophrenia that appears suddenly, often as a reaction to particular life stresses in a previously well-adjusted person; recovery is more likely and drug therapy tends to work well on its positive symptoms.", tag: "Schizophrenia" },
+      { term: "Dopamine hypothesis (schizophrenia)", def: "The theory that excess dopamine activity or dopamine receptor sensitivity contributes to positive symptoms of schizophrenia such as hallucinations and paranoia; supported by drugs that block or increase dopamine.", tag: "Schizophrenia" },
+      { term: "Fetal-virus hypothesis (schizophrenia)", def: "The theory that midpregnancy viral infection can impair fetal brain development and increase schizophrenia risk; supported by links between schizophrenia and flu epidemics, dense population areas, and winter/spring births.", tag: "Schizophrenia" },
+
+      // ── Dissociative, Personality & Eating Disorders ──
+      { term: "Dissociative disorders", def: "Rare, controversial disorders in which conscious awareness becomes dissociated (separated) from previous memories, thoughts, and feelings, often following overwhelming stress.", tag: "Dissociative Disorders" },
+      { term: "Dissociative identity disorder (DID)", def: "A rare dissociative disorder in which a person exhibits two or more distinct and alternating identities, each with its own voice and mannerisms; often linked to reported childhood trauma and debated by skeptics.", tag: "Dissociative Disorders" },
+      { term: "Personality disorders", def: "Psychological disorders characterized by inflexible and enduring behavior patterns that impair social functioning; the DSM-5-TR groups ten such disorders into three clusters (anxious, eccentric, and dramatic/impulsive).", tag: "Personality Disorders" },
+      { term: "Avoidant personality disorder", def: "A personality disorder marked by a fearful sensitivity to rejection that leads to social withdrawal; part of the anxiety cluster of personality disorders.", tag: "Personality Disorders" },
+      { term: "Schizotypal personality disorder", def: "A personality disorder marked by odd or eccentric thinking, including magical beliefs (mind-reading, UFOs, seeing the future); part of the eccentric cluster.", tag: "Personality Disorders" },
+      { term: "Borderline personality disorder", def: "A personality disorder marked by an unstable identity, relationships, and emotions, along with impulsive, attention-getting behaviors; part of the dramatic/impulsive cluster.", tag: "Personality Disorders" },
+      { term: "Narcissistic personality disorder", def: "A personality disorder marked by a self-focused, self-inflating pattern of thinking and behaving; part of the dramatic/impulsive cluster.", tag: "Personality Disorders" },
+      { term: "Antisocial personality disorder", def: "A personality disorder in which a person (usually male) displays a lack of conscience for wrongdoing, even toward friends and family members, often beginning with symptoms of conduct disorder before age 15.", tag: "Personality Disorders" },
+      { term: "Low arousal (antisocial personality)", def: "A biological marker of antisocial personality disorder in which the person shows unusually little bodily arousal (heart rate, stress hormones, skin conductance) in response to stressful or threatening stimuli.", tag: "Personality Disorders" },
+      { term: "Anorexia nervosa", def: "An eating disorder in which a person (usually a female adolescent) diets and becomes significantly underweight, yet still feels fat, fears gaining weight, and continues to diet, often coupled with excessive exercise.", tag: "Eating Disorders" },
+      { term: "Bulimia nervosa", def: "An eating disorder characterized by repeated episodes of binge eating followed by compensatory behaviors such as vomiting, laxative use, fasting, or excessive exercise; weight often stays within or above normal range.", tag: "Eating Disorders" },
+      { term: "Binge-eating disorder", def: "The world's most common eating disorder, marked by significant episodes of binge eating followed by distress, remorse, or guilt, but without the compensatory purging, fasting, or excessive exercise seen in bulimia.", tag: "Eating Disorders" },
+
+      // ── Risk of Harm & Neurodevelopmental Disorders ──
+      { term: "Suicide", def: "The act of intentionally taking one's own life; risk factors include prior depression, feelings of hopelessness and being a burden, and access to lethal means, but individual acts remain difficult to predict.", tag: "Risk of Harm" },
+      { term: "Nonsuicidal self-injury (NSSI)", def: "Deliberate self-harm behaviors, such as cutting or burning the skin, performed without suicidal intent, often to gain relief from negative emotion, attract help, or relieve guilt.", tag: "Risk of Harm" },
+      { term: "Disorder and violence risk", def: "The research-supported finding that most people with psychological disorders are not violent, and most violent people do not have a diagnosed psychological disorder; better predictors of violence include substance use, prior violence, and gun access.", tag: "Risk of Harm" },
+      { term: "Intellectual developmental disorder", def: "A neurodevelopmental disorder, apparent before age 18, defined by an intelligence test score around 70 or below plus significant difficulty adapting to independent living demands (conceptual, social, and practical skills).", tag: "Neurodevelopmental Disorders" },
+      { term: "Autism spectrum disorder (ASD)", def: "A neurodevelopmental disorder marked by social deficiencies, difficulty inferring others' mental states, and repetitive behaviors, appearing in early childhood and varying widely in severity.", tag: "Neurodevelopmental Disorders" },
+      { term: "Theory of mind (and ASD)", def: "The capacity to infer other people's mental states; researchers debate whether people with autism spectrum disorder have an impaired theory of mind, contributing to their difficulty reading facial expressions and social cues.", tag: "Neurodevelopmental Disorders" },
+      { term: "Attention-deficit/hyperactivity disorder (ADHD)", def: "A neurodevelopmental disorder marked by extreme inattention and/or hyperactivity and impulsivity; diagnostic criteria have broadened over time, prompting debate over whether ordinary high energy is being over-diagnosed.", tag: "Neurodevelopmental Disorders" },
+    ]
+  },
+  {
+    id: "ch14",
+    num: "Chapter 14",
+    title: "Therapy",
+    cards: [
+      // ── Overview & Psychoanalysis ──
+      { term: "Psychotherapy", def: "A treatment in which a trained therapist uses psychological techniques to help someone seeking to overcome difficulties and achieve personal growth.", tag: "Overview" },
+      { term: "Biomedical therapy", def: "Treatment that offers medication or other biological interventions (e.g., ECT, brain stimulation) for psychological disorders.", tag: "Overview" },
+      { term: "Eclectic / integrative approach", def: "A therapeutic approach that blends techniques from multiple psychotherapy perspectives rather than relying on a single method.", tag: "Overview" },
+      { term: "Psychoanalysis", def: "Sigmund Freud's therapeutic technique; the analyst's interpretation of a patient's free associations, resistances, dreams, and transferences to release repressed feelings, allowing the patient to gain self-insight.", tag: "Psychoanalysis" },
+      { term: "Free association", def: "Freud's psychoanalytic method in which the patient relaxes and says whatever comes to mind, no matter how trivial or embarrassing, to expose the workings of the unconscious mind.", tag: "Psychoanalysis" },
+      { term: "Resistance", def: "In psychoanalysis, a blocking from consciousness of anxiety-laden material, revealed by pauses, evasions, or topic changes that hint the patient is defending against uncomfortable material.", tag: "Psychoanalysis" },
+      { term: "Interpretation", def: "In psychoanalysis, the analyst's noting of supposed dream meanings, resistances, and other significant behaviors and events in order to promote insight.", tag: "Psychoanalysis" },
+      { term: "Transference", def: "In psychoanalysis, the patient's transfer to the analyst of emotions linked with other relationships (such as love or hatred for a parent).", tag: "Psychoanalysis" },
+      { term: "Psychodynamic therapy", def: "Therapy deriving from the psychoanalytic tradition that views individuals as responding to unconscious forces and childhood experiences, and that seeks to enhance self-insight; briefer and less intensive than traditional psychoanalysis, often held weekly face-to-face.", tag: "Psychoanalysis" },
+
+      // ── Humanistic Therapy ──
+      { term: "Insight therapies", def: "A category including psychodynamic and humanistic therapies, both of which assume that self-awareness and psychological well-being go hand in hand.", tag: "Humanistic Therapy" },
+      { term: "Person-centered therapy", def: "A humanistic therapy, developed by Carl Rogers, in which the therapist uses techniques such as active listening within a genuine, accepting, empathic environment to facilitate clients' growth (nondirective therapy).", tag: "Humanistic Therapy" },
+      { term: "Active listening", def: "Empathic listening in which the listener echoes, restates, and clarifies what a client expresses (verbally or nonverbally), and acknowledges the client's expressed feelings; a core technique of Rogerian person-centered therapy.", tag: "Humanistic Therapy" },
+      { term: "Unconditional positive regard", def: "A caring, accepting, nonjudgmental attitude that, according to Carl Rogers, helps clients develop self-awareness and self-acceptance.", tag: "Humanistic Therapy" },
+
+      // ── Behavior Therapy ──
+      { term: "Behavior therapy", def: "Therapy that applies learning principles to the elimination of unwanted behaviors, assuming that the problem behavior itself is the problem (rather than a symptom of a deeper underlying issue).", tag: "Behavior Therapy" },
+      { term: "Counterconditioning", def: "A behavior therapy procedure that uses classical conditioning to evoke new responses to stimuli that trigger unwanted behaviors; exposure therapies and aversive conditioning are counterconditioning techniques.", tag: "Behavior Therapy" },
+      { term: "Exposure therapies", def: "Behavioral techniques, such as systematic desensitization and virtual reality exposure therapy, that treat anxieties by exposing people (in imagination or actual situations) to the things they fear and avoid.", tag: "Behavior Therapy" },
+      { term: "Systematic desensitization", def: "A type of exposure therapy that associates a pleasant, relaxed state with gradually increasing anxiety-triggering stimuli; commonly used to treat specific phobias.", tag: "Behavior Therapy" },
+      { term: "Virtual reality exposure therapy", def: "A counterconditioning technique that treats anxiety through simulations, using a head-mounted display unit, that generate a lifelike three-dimensional virtual world tailored to a person's specific fear.", tag: "Behavior Therapy" },
+      { term: "Aversive conditioning", def: "A counterconditioning technique that associates an unpleasant state (such as nausea) with an unwanted behavior (such as drinking alcohol), creating a negative response to a harmful stimulus.", tag: "Behavior Therapy" },
+      { term: "Behavior modification", def: "The use of operant conditioning principles to reinforce desirable behaviors and withhold reinforcement (or apply punishment) for undesirable behaviors.", tag: "Behavior Therapy" },
+      { term: "Token economy", def: "An operant conditioning procedure in which people earn a token of some sort for exhibiting a desired behavior, which they can later exchange for various privileges or treats.", tag: "Behavior Therapy" },
+
+      // ── Cognitive & Cognitive-Behavioral Therapy ──
+      { term: "Cognitive therapy", def: "Therapy, developed largely by Aaron Beck, that teaches people new, more adaptive ways of thinking; based on the assumption that our thinking colors our feelings, so changing self-defeating thoughts can relieve distress.", tag: "Cognitive Therapy" },
+      { term: "Catastrophizing", def: "Relentless, overgeneralized, self-blaming negative self-talk (e.g., 'this exam is going to be impossible') that cognitive therapists work to identify and change.", tag: "Cognitive Therapy" },
+      { term: "Decatastrophizing", def: "A cognitive therapy technique in which the client works through the actual worst-case consequences of a feared situation, often discovering it is not as bad as imagined, and then plans how to cope.", tag: "Cognitive Therapy" },
+      { term: "Cognitive-behavioral therapy (CBT)", def: "A popular integrative therapy that combines cognitive therapy (changing self-defeating thinking) with behavior therapy (changing behavior), training people to counter self-harmful thoughts and act out new, healthier ways of thinking.", tag: "Cognitive-Behavioral Therapy" },
+      { term: "Dialectical behavior therapy (DBT)", def: "A CBT variation, developed by Marsha Linehan, that helps people change harmful and suicidal behavior patterns by making peace between the opposing forces of acceptance and change; combines individual sessions with group skills training and mindfulness.", tag: "Cognitive-Behavioral Therapy" },
+      { term: "Acceptance and commitment therapy (ACT)", def: "A therapy that helps clients accept their feelings (rather than fight them) while committing to act in ways consistent with their personal values; used to treat depression, anxiety, and chronic pain.", tag: "Cognitive-Behavioral Therapy" },
+
+      // ── Group, Couple, Family Therapy ──
+      { term: "Group therapy", def: "Therapy conducted with groups rather than individuals, offering benefits including saved time and money, a social laboratory for practicing new behaviors, and the relief of learning others share similar problems.", tag: "Group/Family Therapy" },
+      { term: "Family therapy", def: "Therapy that treats the family as a system, viewing an individual's unwanted behaviors as influenced by, or directed at, other family members; aims to build healthier, more supportive family interactions.", tag: "Group/Family Therapy" },
+
+      // ── Evaluating Psychotherapy ──
+      { term: "Effort justification", def: "The tendency to find something positive to say about a therapy (or other investment of time, money, and effort) simply because so much was invested in it — a source of bias in clients' self-reports of therapy's effectiveness.", tag: "Evaluating Therapy" },
+      { term: "Regression toward the average (in therapy)", def: "The statistical tendency for people who seek help while in crisis to improve over time regardless of treatment, since extreme states tend to move back toward their average level — a confound in judging therapy's effectiveness from client testimonials alone.", tag: "Evaluating Therapy" },
+      { term: "Randomized clinical trial", def: "A research design in which participants are randomly assigned either to a treatment group (e.g., receiving therapy) or a waiting-list control group, then evaluated by assessors unaware of who received treatment — considered the strongest evidence for a therapy's effectiveness.", tag: "Evaluating Therapy" },
+      { term: "Evidence-based practice", def: "Clinical decision-making that integrates the best available research evidence with clinical expertise and knowledge of the client's characteristics, culture, and preferences.", tag: "Evaluating Therapy" },
+      { term: "Therapeutic alliance", def: "The emotional bond of trust and mutual understanding between a therapist and client, formed as they work together constructively to overcome the client's problem; a key predictor of therapy effectiveness across approaches.", tag: "Evaluating Therapy" },
+      { term: "Three common benefits of psychotherapy", def: "Hope for discouraged people, a new perspective on their problem, and an empathic, trusting, caring relationship — benefits shared by virtually all psychotherapy approaches regardless of technique.", tag: "Evaluating Therapy" },
+
+      // ── Human Diversity & Ethics ──
+      { term: "Cultural competence", def: "A therapist's understanding of and respect for a client's cultural values, beliefs, and traditions, which helps reduce client-therapist mismatches and improves therapeutic outcomes.", tag: "Diversity & Ethics" },
+      { term: "Individualism vs. collectivism (in therapy)", def: "A cultural mismatch that can arise when therapists trained in individualist traditions (prioritizing personal desires and identity) work with clients from collectivist cultures who prioritize social/family harmony and group goals.", tag: "Diversity & Ethics" },
+      { term: "APA ethical principles for therapists", def: "Guidelines requiring therapists to benefit clients and do no harm, establish trust, be honest and accurate, promote fairness and access to care, and respect client dignity, privacy, confidentiality, and self-determination.", tag: "Diversity & Ethics" },
+
+      // ── Biomedical Therapy: Drugs ──
+      { term: "Double-blind technique", def: "An experimental procedure in which neither the participants nor the research staff know which participants received a treatment drug versus a placebo, used to control for the placebo effect when testing drug therapies.", tag: "Drug Therapy" },
+      { term: "Placebo effect (in drug therapy)", def: "The healing power of positive expectations alone; drug researchers must control for this effect using placebo comparison groups to isolate a drug's true therapeutic effect.", tag: "Drug Therapy" },
+      { term: "Antipsychotic drugs", def: "Drugs used to treat schizophrenia and other severe psychotic disorders by reducing responsiveness to irrelevant stimuli; many work by blocking dopamine receptor sites, which supports the dopamine hypothesis of schizophrenia.", tag: "Drug Therapy" },
+      { term: "Tardive dyskinesia", def: "A possible side effect of long-term antipsychotic drug use, involving involuntary movements of the facial muscles, tongue, and limbs.", tag: "Drug Therapy" },
+      { term: "Antianxiety drugs", def: "Drugs (such as Xanax or Ativan) that depress central nervous system activity to calm anxiety, often combined with psychotherapy; can be addictive and produce withdrawal symptoms.", tag: "Drug Therapy" },
+      { term: "Antidepressant drugs", def: "Drugs used to treat depression, anxiety disorders, OCD-related disorders, and PTSD by increasing the availability of neurotransmitters such as norepinephrine or serotonin.", tag: "Drug Therapy" },
+      { term: "Selective serotonin reuptake inhibitors (SSRIs)", def: "A widely prescribed class of antidepressant drugs (e.g., Prozac, Zoloft, Paxil) that partially block the reuptake of serotonin at the synapse, prolonging its mood-elevating availability in the brain.", tag: "Drug Therapy" },
+      { term: "Ketamine (as antidepressant)", def: "An anesthetic drug that acts as an opioid and shows promise as a fast-acting antidepressant, providing relief from depression in as little as four hours, though relief often fades within about a week.", tag: "Drug Therapy" },
+      { term: "Mood-stabilizing drugs", def: "Medications, such as Depakote and lithium, used to control the manic (and sometimes depressive) episodes associated with bipolar disorders.", tag: "Drug Therapy" },
+      { term: "Lithium", def: "A simple mood-stabilizing salt that effectively levels the emotional highs and lows of bipolar disorders for about 7 in 10 people who take it long-term, and reduces suicide risk in that population.", tag: "Drug Therapy" },
+
+      // ── Brain Stimulation & Psychosurgery ──
+      { term: "Electroconvulsive therapy (ECT)", def: "A biomedical treatment for severely depressed patients in which a brief electric current is sent through the brain of an anesthetized patient, triggering a 30- to 60-second seizure; highly effective for treatment-resistant severe depression, though its mechanism is not fully understood.", tag: "Brain Stimulation" },
+      { term: "Transcranial direct current stimulation (tDCS)", def: "A neurostimulation technique that administers a weak (1- to 2-milliamp) electrical current to the scalp; shown to be a modestly effective treatment for depression.", tag: "Brain Stimulation" },
+      { term: "Transcranial magnetic stimulation (TMS)", def: "A painless procedure using repeated pulses of magnetic energy directed at the brain, applied to wide-awake people over several weeks, that can improve mood in some cases of depression and reduce certain schizophrenia symptoms.", tag: "Brain Stimulation" },
+      { term: "Deep brain stimulation (DBS)", def: "An experimental treatment for depression resistant to drugs and ECT, in which a pacemaker activates electrodes implanted in brain areas linked to negative emotion, inhibiting their overactivity.", tag: "Brain Stimulation" },
+      { term: "Psychosurgery", def: "Surgery that removes or destroys brain tissue in an attempt to change behavior; the most drastic and least-used biomedical intervention because its effects are irreversible.", tag: "Psychosurgery" },
+      { term: "Lobotomy", def: "A now-rare psychosurgical procedure, developed by Egas Moniz in the 1930s, that cut the nerves connecting the frontal lobes to the emotion-controlling centers of the inner brain; often left patients permanently lethargic and impaired, and was largely abandoned once calming drugs became available.", tag: "Psychosurgery" },
+
+      // ── Prevention & Resilience ──
+      { term: "Preventive mental health", def: "An 'upstream' approach to mental health that aims to prevent psychological casualties by identifying and correcting the social conditions (poverty, discrimination, lack of meaningful work) that cause them, rather than only treating individuals after problems develop.", tag: "Prevention & Resilience" },
+      { term: "Community psychology", def: "A branch of psychology that studies how people interact with their social environments and works to create environments that support psychological health, empowering people and enhancing competence and well-being.", tag: "Prevention & Resilience" },
+      { term: "Resilience", def: "Personal strength that helps most people cope with stress and recover from adversity and even trauma; most people exposed to extreme stressors (combat, disaster, injury) do not develop lasting disorder.", tag: "Prevention & Resilience" },
+      { term: "Posttraumatic growth", def: "Positive psychological change experienced as a result of struggling with challenging life crises and traumatic events, often including greater appreciation for life, more meaningful relationships, and increased personal strength.", tag: "Prevention & Resilience" },
+    ]
+  },
 ];
 
 /* ═══════════════════════════════════════════
